@@ -4,8 +4,9 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-const renderApp = () =>
+const renderApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'))
+}
 
 // hot module replacement (hmr)
 if (module.hot) {
