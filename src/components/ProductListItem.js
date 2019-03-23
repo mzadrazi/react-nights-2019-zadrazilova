@@ -1,17 +1,13 @@
 import React from 'react'
 import { string } from 'prop-types'
 
-const ProductListItem = props => {
-  const { description, image_url } = props
-
-  return (
-    <>
-      <strong>{props.name}</strong>
-      <p>{description}</p>
-      <img alt={name} src={image_url} width={200} />
-    </>
-  )
-}
+const ProductListItem = props => (
+  <li>
+    <strong>{props.name}</strong>
+    <p>{props.description}</p>
+    <img alt={props.name} src={props.image_url} width={200} />
+  </li>
+)
 
 ProductListItem.propTypes = {
   description: string.isRequired,

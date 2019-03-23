@@ -1,5 +1,5 @@
 import React from 'react'
-import { arrayOf, bool } from 'prop-types'
+import { array, bool } from 'prop-types'
 import ProductListItem from './ProductListItem'
 
 const ProductList = props => {
@@ -12,9 +12,7 @@ const ProductList = props => {
   return (
     <ul>
       {products.map(({ id, attributes }) => (
-        <li key={id}>
-          <ProductListItem {...attributes} />
-        </li>
+        <ProductListItem key={id} {...attributes} />
       ))}
     </ul>
   )
@@ -22,7 +20,7 @@ const ProductList = props => {
 
 ProductList.propTypes = {
   isLoading: bool,
-  products: arrayOf(ProductListItem.propTypes),
+  products: array,
 }
 
 ProductList.defaultProps = {
