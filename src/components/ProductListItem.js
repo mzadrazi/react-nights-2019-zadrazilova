@@ -1,11 +1,13 @@
 import React from 'react'
 import { string } from 'prop-types'
 
-const ProductListItem = props => (
+const ProductListItem = (
+  { name, description, image_url } // eslint-disable-line no-shadow
+) => (
   <li>
-    <strong>{props.name}</strong>
-    <p>{props.description}</p>
-    <img alt={props.name} src={props.image_url} width={200} />
+    <strong>{name}</strong>
+    <p>{description}</p>
+    <img alt={name} src={image_url} width={200} />
   </li>
 )
 
