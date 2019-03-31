@@ -5,13 +5,14 @@ import { getProduct } from '../../api/apiCalls'
 
 import Loader from '../../components/Loader'
 import {
-  Wrapper,
-  ImgWrap,
-  Img,
-  Title,
+  Button,
   Description,
+  Img,
+  ImgWrap,
+  Title,
   Price,
   ProductInfoWrap,
+  Wrapper,
 } from './styled'
 
 class ProductDetail extends React.Component {
@@ -41,6 +42,7 @@ class ProductDetail extends React.Component {
           <Title>{product.name}</Title>
           <Description>{product.description}</Description>
           <Price>{product.price.formatted_amount}</Price>
+          <Button>Add To Cart</Button>
         </ProductInfoWrap>
       </Wrapper>
     )

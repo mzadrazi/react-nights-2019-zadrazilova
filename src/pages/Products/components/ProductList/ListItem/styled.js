@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 
-import theme from '../../../../global/theme'
+import theme from '../../../../../global/theme'
 
 //TODO use relative units, not pixels
 export const ProductWrap = styled.li`
@@ -18,6 +18,10 @@ export const Link = styled(RouterLink)`
   background-color: ${theme.color.white};
   text-decoration: none;
   color: ${theme.color.black};
+
+  :hover {
+    box-shadow: 2px 2px 10px #ccc;
+  }
 `
 
 export const ImgWrap = styled.div`

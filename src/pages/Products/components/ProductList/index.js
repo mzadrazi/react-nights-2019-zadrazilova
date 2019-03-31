@@ -1,7 +1,7 @@
 import React from 'react'
 import { array, bool } from 'prop-types'
 
-import ProductListItem from '../ProductListItem'
+import ProductListItem from './ListItem/index'
 import Loader from '../.././../../components/Loader/index'
 import { Wrapper } from './styled'
 

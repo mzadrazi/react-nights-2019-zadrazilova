@@ -1,7 +1,7 @@
 import React from 'react'
 import { shape, string } from 'prop-types'
 
-import { Price } from '../../../../components/Price/index'
+import { Price } from '../../../../../components/Price/index'
 import { ProductWrap, Link, Img, ImgWrap, Title } from './styled'
 
 const ProductListItem = (

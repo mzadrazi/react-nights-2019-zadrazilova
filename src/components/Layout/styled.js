@@ -11,7 +11,7 @@ export const Header = styled.header`
   height: 50px;
   margin: 0;
   padding: 0 30px;
-  border-bottom: #d7cec7;
+  border-bottom: 1px solid ${theme.color.border};
 `
 
 export const Link = styled(RouterLink)`
