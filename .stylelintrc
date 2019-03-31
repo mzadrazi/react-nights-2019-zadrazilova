@@ -1,0 +1,3 @@
+{
+  "extends": ["@strv/stylelint-config-styled-components"]
+}
