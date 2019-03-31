@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
+import theme from '../../global/theme'
 import { Price as BasePrice } from '../../components/Price/index'
 
 export const Wrapper = styled.div`
   display: flex;
+  background-color: ${theme.color.white};
+  border-radius: ${theme.radius.basic};
+  overflow: hidden;
 `
 export const Title = styled.h2``
 

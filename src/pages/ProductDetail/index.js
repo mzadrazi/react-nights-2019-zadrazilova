@@ -3,6 +3,7 @@ import { object } from 'prop-types'
 
 import { getProduct } from '../../api/apiCalls'
 
+import Loader from '../../components/Loader'
 import {
   Wrapper,
   ImgWrap,
@@ -15,6 +16,7 @@ import {
 
 class ProductDetail extends React.Component {
   state = {
+    isLoading: true,
     product: null,
   }
 
@@ -22,13 +24,13 @@ class ProductDetail extends React.Component {
     const id = this.props.match.params.productId
     const product = await getProduct(id)
 
-    this.setState({ product })
+    this.setState({ product, isLoading: false })
   }
 
   render() {
-    const { product } = this.state
+    const { product, isLoading } = this.state
 
-    if (!product) return null
+    if (isLoading) return <Loader />
 
     return (
       <Wrapper>

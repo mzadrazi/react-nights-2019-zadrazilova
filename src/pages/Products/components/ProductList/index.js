@@ -2,13 +2,14 @@ import React from 'react'
 import { array, bool } from 'prop-types'
 
 import ProductListItem from '../ProductListItem'
+import Loader from '../.././../../components/Loader/index'
 import { Wrapper } from './styled'
 
 const ProductList = props => {
   const { isLoading, products } = props
 
   if (isLoading) {
-    return 'Loading products ...'
+    return <Loader />
   }
 
   return (
