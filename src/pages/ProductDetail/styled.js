@@ -9,22 +9,26 @@ export const Wrapper = styled.div`
   border: 1px solid ${theme.color.border};
   border-radius: ${theme.radius.basic};
   overflow: hidden;
+  padding: 3rem;
 `
 export const Title = styled.h2``
 
-export const ImgWrap = styled.div``
+export const ImgWrap = styled.div`
+  width: 45rem;
+  text-align: center;
+  margin-right: 3rem;
+`
 
 export const Img = styled.img`
-  width: 500px;
+  max-width: 100%;
 `
 
 export const ProductInfoWrap = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
 `
 
-export const Description = styled.div``
+export const Description = styled.p``
 
 export const Button = styled.button`
   background-color: ${theme.color.oxblood};
@@ -32,8 +36,8 @@ export const Button = styled.button`
   font-weight: bold;
   border: none;
   border-radius: ${theme.radius.basic};
-  padding: 15px;
-  width: 320px;
+  padding: 1.5rem;
+  width: 32rem;
 
   :hover {
     background-color: #5f222e;
@@ -41,5 +45,5 @@ export const Button = styled.button`
 `
 
 export const Price = styled(BasePrice)`
-  font-size: 1.5em;
+  font-size: 2.4rem;
 `

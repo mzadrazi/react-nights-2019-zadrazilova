@@ -8,9 +8,9 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: ${theme.color.white};
-  height: 50px;
+  height: 5rem;
   margin: 0;
-  padding: 0 30px;
+  padding: 0 3rem;
   border-bottom: 1px solid ${theme.color.border};
 `
 
@@ -25,5 +25,5 @@ export const MainTitle = styled.h1`
 `
 
 export const Main = styled.main`
-  margin: 15px 30px;
+  margin: 1.5rem 3rem;
 `

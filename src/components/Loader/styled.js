@@ -4,7 +4,9 @@ import theme from '../../global/theme'
 
 export const StyledLoader = styled.p`
   color: ${theme.color.oxblood};
-  font-size: 1.6em;
+  display: block;
+  margin: 0 auto;
+  font-size: 2.4rem;
   font-weight: bold;
   text-align: center;
 `
