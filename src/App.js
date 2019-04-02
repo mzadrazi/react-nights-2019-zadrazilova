@@ -1,29 +1,24 @@
 import React, { Component } from 'react'
-import { getToken, getProducts } from './apiCalls'
-import ProductList from './components/ProductList'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import GlobalStyles from './globalStyles'
+
+import Layout from './components/Layout/index'
+import ProductListContainer from './pages/Products'
+import { ProductDetail } from './pages/ProductDetail/index'
 
 class App extends Component {
-  state = {
-    isLoading: true,
-    products: [],
-  }
-
-  // TODO: handling errors
-  async componentDidMount() {
-    const token = await getToken()
-    const products = await getProducts(token)
-
-    this.setState({ products, isLoading: false })
-  }
-
   render() {
-    const { isLoading, products } = this.state
-
     return (
-      <div className="App">
-        <h1>E-commerce app</h1>
-        <ProductList isLoading={isLoading} products={products} />
-      </div>
+      <Router>
+        <GlobalStyles />
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={ProductListContainer} />
+            <Route path="/:productId" component={ProductDetail} />
+          </Switch>
+        </Layout>
+      </Router>
     )
   }
 }
