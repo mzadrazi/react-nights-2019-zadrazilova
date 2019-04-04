@@ -12,15 +12,16 @@ export const Link = styled(RouterLink)`
   display: inline-block;
   border: 1px solid ${theme.color.border};
   border-radius: ${theme.radius.basic};
-  padding: 15px;
-  width: 250px;
-  margin-bottom: 15px;
+  padding: 1.5rem;
+  width: 25rem;
+  margin-bottom: 1.5rem;
   background-color: ${theme.color.white};
   text-decoration: none;
   color: ${theme.color.black};
+  overflow: hidden;
 
   :hover {
-    box-shadow: 2px 2px 10px #ccc;
+    box-shadow: 0.2rem 0.2rem 1rem #ccc;
   }
 `
 
@@ -29,6 +30,11 @@ export const ImgWrap = styled.div`
   text-align: center;
 `
 
-export const Img = styled.img``
+export const Img = styled.img`
+  max-width: 100%;
+`
 
-export const Title = styled.strong``
+export const Title = styled.p`
+  font-size: 1.4rem;
+  font-weight: bold;
+`

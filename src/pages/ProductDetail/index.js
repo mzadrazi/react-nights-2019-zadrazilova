@@ -1,5 +1,5 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { shape, string } from 'prop-types'
 
 import { getProduct } from '../../api/apiCalls'
 
@@ -14,6 +14,8 @@ import {
   ProductInfoWrap,
   Wrapper,
 } from './styled'
+
+//TODO: add breadcrumb
 
 class ProductDetail extends React.Component {
   state = {
@@ -50,7 +52,11 @@ class ProductDetail extends React.Component {
 }
 
 ProductDetail.propTypes = {
-  match: object.isRequired,
+  match: shape({
+    params: shape({
+      productId: string.isRequired,
+    }).isRequired,
+  }).isRequired,
 }
 
 export { ProductDetail }

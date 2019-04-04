@@ -6,6 +6,6 @@ import theme from '../../global/theme'
 export const Price = styled.p`
   font-weight: bold;
   color: ${theme.color.oxblood};
-  font-size: 1.4em;
+  font-size: 2rem;
   ${textAlign}
 `
