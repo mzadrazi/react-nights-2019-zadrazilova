@@ -1,7 +1,8 @@
 import React from 'react'
 import { func, shape, string } from 'prop-types'
 
-import { Price } from '../../../../components/Price/index'
+import { Price } from '../../../../components/Price'
+import { AddToCartButton } from '../../../../components/AddToCartButton'
 import { ProductWrap, Link, Img, ImgWrap, Title } from './styled'
 
 const ProductListItem = (
@@ -13,8 +14,10 @@ const ProductListItem = (
         <Img alt={name} src={imgUrl} width={200} />
       </ImgWrap>
       <Title>{name}</Title>
-      <Price textAlign="right">{price.formatted_amount}</Price>
-      <button onClick={e => onAddToCart(e, id)}>Add to cart</button>
+      <Price>{price.formatted_amount}</Price>
+      <AddToCartButton onClick={e => onAddToCart(e, id)}>
+        Add to cart
+      </AddToCartButton>
     </Link>
   </ProductWrap>
 )

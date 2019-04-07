@@ -7,8 +7,8 @@ import { addProduct } from '../../store/cartItems/actions'
 import { getProduct } from '../../api/apiCalls'
 
 import Loader from '../../components/Loader'
+import { AddToCartButton } from '../../components/AddToCartButton'
 import {
-  Button,
   Description,
   Img,
   ImgWrap,
@@ -47,9 +47,9 @@ class ProductDetailView extends React.Component {
           <Title>{product.name}</Title>
           <Description>{product.description}</Description>
           <Price>{product.price.formatted_amount}</Price>
-          <Button onClick={() => this.props.addProduct(product.id)}>
+          <AddToCartButton onClick={() => this.props.addProduct(product.id)}>
             Add To Cart
-          </Button>
+          </AddToCartButton>
         </ProductInfoWrap>
       </Wrapper>
     )

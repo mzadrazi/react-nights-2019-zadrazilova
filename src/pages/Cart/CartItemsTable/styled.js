@@ -11,9 +11,9 @@ export const Table = styled.table`
 export const Th = styled.th`
   background: ${theme.color.oxblood};
   color: ${theme.color.white};
-  padding: 8px 16px;
+  padding: 0.8rem 1.6rem;
 `
 
 export const Td = styled.td`
-  padding: 8px 16px;
+  padding: 0.8rem 1.6rem;
 `
