@@ -9,6 +9,8 @@ const Layout = props => (
       <MainTitle>
         <Link to="/">The Cyan Brand</Link>
       </MainTitle>
+      <Link to="/">All products</Link>
+      <Link to="/cart">Cart</Link>
     </Header>
     <Main>{props.children}</Main>
   </>

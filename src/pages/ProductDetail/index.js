@@ -1,5 +1,8 @@
 import React from 'react'
-import { shape, string } from 'prop-types'
+import { func, shape, string } from 'prop-types'
+import { connect } from 'react-redux'
+
+import { addProduct } from '../../store/cartItems/actions'
 
 import { getProduct } from '../../api/apiCalls'
 
@@ -17,7 +20,7 @@ import {
 
 //TODO: add breadcrumb
 
-class ProductDetail extends React.Component {
+class ProductDetailView extends React.Component {
   state = {
     isLoading: true,
     product: null,
@@ -44,19 +47,31 @@ class ProductDetail extends React.Component {
           <Title>{product.name}</Title>
           <Description>{product.description}</Description>
           <Price>{product.price.formatted_amount}</Price>
-          <Button>Add To Cart</Button>
+          <Button onClick={() => this.props.addProduct(product.id)}>
+            Add To Cart
+          </Button>
         </ProductInfoWrap>
       </Wrapper>
     )
   }
 }
 
-ProductDetail.propTypes = {
+ProductDetailView.propTypes = {
+  addProduct: func.isRequired,
   match: shape({
     params: shape({
       productId: string.isRequired,
     }).isRequired,
   }).isRequired,
 }
+
+const mapDispatchToProps = {
+  addProduct,
+}
+
+const ProductDetail = connect(
+  null,
+  mapDispatchToProps
+)(ProductDetailView)
 
 export { ProductDetail }

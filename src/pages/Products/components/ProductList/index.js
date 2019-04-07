@@ -1,12 +1,12 @@
 import React from 'react'
-import { array, bool } from 'prop-types'
+import { array, bool, func } from 'prop-types'
 
 import ProductListItem from './ListItem/index'
 import Loader from '../.././../../components/Loader/index'
 import { Wrapper } from './styled'
 
 const ProductList = props => {
-  const { isLoading, products } = props
+  const { isLoading, products, onAddToCart } = props
 
   if (isLoading) {
     return <Loader />
@@ -15,7 +15,12 @@ const ProductList = props => {
   return (
     <Wrapper>
       {products.map(({ id, ...product }) => (
-        <ProductListItem key={id} id={id} {...product} />
+        <ProductListItem
+          key={id}
+          id={id}
+          {...product}
+          onAddToCart={onAddToCart}
+        />
       ))}
     </Wrapper>
   )
@@ -23,6 +28,7 @@ const ProductList = props => {
 
 ProductList.propTypes = {
   isLoading: bool,
+  onAddToCart: func.isRequired,
   products: array,
 }
 
