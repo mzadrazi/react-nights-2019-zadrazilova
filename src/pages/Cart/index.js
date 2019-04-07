@@ -3,18 +3,29 @@ import { arrayOf, func, number, shape, string } from 'prop-types'
 import { connect } from 'react-redux'
 
 import { addProduct, removeProduct } from '../../store/cartItems/actions'
+import { formatPrice } from '../../utils'
 
+import { Wrapper, TotalPrice } from './styled'
 import { CartItemsTable } from './CartItemsTable'
 
 const CartView = props => (
-  <div>
+  <Wrapper>
     <h2>Shopping Cart</h2>
     <CartItemsTable
       items={props.items}
       onAdd={props.addProduct}
       onRemove={props.removeProduct}
     />
-  </div>
+    <TotalPrice>
+      Total price:{' '}
+      {formatPrice(
+        props.items.reduce(
+          (sum, curr) => sum + curr.quantity * curr.product.price.amount_float,
+          0
+        )
+      )}
+    </TotalPrice>
+  </Wrapper>
 )
 
 CartView.propTypes = {

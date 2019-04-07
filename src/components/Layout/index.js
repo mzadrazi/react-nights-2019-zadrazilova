@@ -2,7 +2,7 @@ import React from 'react'
 import { node } from 'prop-types'
 
 import { CartQttyInfo } from '../CartQttyInfo'
-import { Header, MainTitle, Main, Link } from './styled'
+import { Header, MainTitle, Main, Link, Nav, NavLink } from './styled'
 
 const Layout = props => (
   <>
@@ -10,10 +10,12 @@ const Layout = props => (
       <MainTitle>
         <Link to="/">The Cyan Brand</Link>
       </MainTitle>
-      <Link to="/">All products</Link>
-      <Link to="/cart">
-        Cart <CartQttyInfo />
-      </Link>
+      <Nav>
+        <NavLink to="/">All products</NavLink>
+        <NavLink to="/cart">
+          Cart <CartQttyInfo />
+        </NavLink>
+      </Nav>
     </Header>
     <Main>{props.children}</Main>
   </>

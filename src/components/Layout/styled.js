@@ -18,6 +18,18 @@ export const Link = styled(RouterLink)`
   color: inherit;
   text-decoration: none;
 `
+export const Nav = styled.nav``
+
+export const NavLink = styled(RouterLink)`
+  color: ${theme.color.oxblood};
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 8px;
+
+  :hover {
+    text-decoration: underline;
+  }
+`
 
 export const MainTitle = styled.h1`
   margin: 0;
