@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { addProduct, removeProduct } from '../../store/cartItems/actions'
 
-import { CartItemsTable } from './components/CartItemsTable'
+import { CartItemsTable } from './CartItemsTable'
 
 const CartView = props => (
   <div>
