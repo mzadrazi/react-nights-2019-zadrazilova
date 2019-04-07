@@ -1,43 +1,56 @@
 import React from 'react'
 import { arrayOf, func, shape, string, number } from 'prop-types'
 
+import { formatPrice } from '../../../utils'
+
+import { QuantityControl } from './QuantityControl'
+import { Table, Td, Th } from './styled'
+
+//TODO: format total price
 const CartItemsTable = ({ items, onAdd, onRemove }) => {
   if (items.length === 0) {
     return <p>Your shopping cart is empty</p>
   }
 
   return (
-    <table>
+    <Table>
       <thead>
         <tr>
-          <th>Product</th>
-          <th>Quantity</th>
+          <Th>Product</Th>
+          <Th>Price per piece</Th>
+          <Th>Quantity</Th>
+          <Th>Price</Th>
         </tr>
       </thead>
       <tbody>
         {items.map(item => (
           <tr key={item.product.id}>
-            <td>
+            <Td>
               <img
                 alt={`thumbnail of ${item.product.name}`}
                 src={item.product.imgUrl}
                 width={100}
               />
               {item.product.name}
-            </td>
-            <td>
-              {item.quantity}
-              <button type="button" onClick={() => onAdd(item.product.id)}>
-                +
-              </button>
-              <button type="button" onClick={() => onRemove(item.product.id)}>
-                -
-              </button>
-            </td>
+            </Td>
+            <Td>{item.product.price.formatted_amount}</Td>
+            <Td>
+              <QuantityControl
+                quantity={item.quantity}
+                onAdd={() => onAdd(item.product.id)}
+                onRemove={() => onRemove(item.product.id)}
+              />
+            </Td>
+            <Td>
+              {formatPrice(
+                item.quantity * item.product.price.amount_float,
+                item.product.price.currency_code
+              )}
+            </Td>
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   )
 }
 
