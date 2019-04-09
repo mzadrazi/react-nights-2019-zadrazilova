@@ -2,7 +2,7 @@ import React from 'react'
 import { arrayOf, func, number, shape, string } from 'prop-types'
 import { connect } from 'react-redux'
 
-import { addProduct, removeProduct } from '../../store/cartItems/actions'
+import { addProduct, removeProduct } from '../../store/cart/actions'
 import { formatPrice } from '../../utils'
 
 import { Wrapper, TotalPrice } from './styled'
@@ -46,9 +46,9 @@ CartView.defaultProps = {
 }
 
 const mapStateToProps = state => ({
-  items: Object.keys(state.cartItems).map(productId => ({
+  items: Object.keys(state.cart).map(productId => ({
     product: state.products.find(p => p.id === productId),
-    quantity: state.cartItems[productId],
+    quantity: state.cart[productId],
   })),
 })
 

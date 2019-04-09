@@ -9,8 +9,8 @@ CartQttyInfoView.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  totalQtty: Object.keys(state.cartItems).reduce(
-    (sum, key) => sum + state.cartItems[key],
+  totalQtty: Object.keys(state.cart).reduce(
+    (sum, key) => sum + state.cart[key],
     0
   ),
 })

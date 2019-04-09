@@ -1,6 +1,6 @@
 // action types
-export const ADD_PRODUCT = 'cartItems/ADD'
-export const REMOVE_PRODUCT = 'cartItems/REMOVE'
+export const ADD_PRODUCT = 'cart/ADD'
+export const REMOVE_PRODUCT = 'cart/REMOVE'
 
 // action creators
 export const addProduct = productId => ({

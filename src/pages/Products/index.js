@@ -6,7 +6,7 @@ import ProductList from './ProductList/index'
 
 import { getProducts } from '../../api/apiCalls.js'
 import { loadProducts } from '../../store/products/actions'
-import { addProduct } from '../../store/cartItems/actions'
+import { addProduct } from '../../store/cart/actions'
 
 class Products extends React.Component {
   state = {

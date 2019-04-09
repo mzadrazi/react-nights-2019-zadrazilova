@@ -2,7 +2,7 @@ import React from 'react'
 import { func, shape, string } from 'prop-types'
 import { connect } from 'react-redux'
 
-import { addProduct } from '../../store/cartItems/actions'
+import { addProduct } from '../../store/cart/actions'
 
 import { getProduct } from '../../api/apiCalls'
 

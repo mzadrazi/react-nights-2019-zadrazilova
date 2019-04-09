@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 
 import products from './products'
-import cartItems from './cartItems'
+import cart from './cart'
 
 const reducer = combineReducers({
-  cartItems,
+  cart,
   products,
 })
 
