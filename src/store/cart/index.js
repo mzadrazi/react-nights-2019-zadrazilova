@@ -18,13 +18,9 @@ const removeProduct = (state, productId) => {
     }
   }
 
-  return Object.keys(state).reduce((newState, key) => {
-    if (key !== productId) {
-      newState[key] = state[key]
-    }
-
-    return newState
-  }, {})
+  const newState = { ...state }
+  delete newState[productId]
+  return newState
 }
 
 const reducer = (state = {}, action) => {
