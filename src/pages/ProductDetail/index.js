@@ -26,6 +26,8 @@ class ProductDetailView extends React.Component {
     product: null,
   }
 
+  handleAddProduct = () => this.props.addProduct(this.state.product.id)
+
   async componentDidMount() {
     const id = this.props.match.params.productId
     const product = await getProduct(id)
@@ -47,7 +49,7 @@ class ProductDetailView extends React.Component {
           <Title>{product.name}</Title>
           <Description>{product.description}</Description>
           <Price>{product.price.formatted_amount}</Price>
-          <AddToCartButton onClick={() => this.props.addProduct(product.id)}>
+          <AddToCartButton onClick={this.handleAddProduct}>
             Add To Cart
           </AddToCartButton>
         </ProductInfoWrap>
