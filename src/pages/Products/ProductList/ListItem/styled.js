@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 
-import theme from '../../../../../global/theme'
+import theme from '../../../../global/theme'
 
 //TODO use relative units, not pixels
 export const ProductWrap = styled.li`

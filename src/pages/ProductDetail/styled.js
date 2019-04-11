@@ -30,20 +30,6 @@ export const ProductInfoWrap = styled.div`
 
 export const Description = styled.p``
 
-export const Button = styled.button`
-  background-color: ${theme.color.oxblood};
-  color: ${theme.color.white};
-  font-weight: bold;
-  border: none;
-  border-radius: ${theme.radius.basic};
-  padding: 1.5rem;
-  width: 32rem;
-
-  :hover {
-    background-color: #5f222e;
-  }
-`
-
 export const Price = styled(BasePrice)`
   font-size: 2.4rem;
 `
