@@ -2,33 +2,35 @@ import React from 'react'
 import { Formik } from 'formik'
 
 import { Input } from '../../components/Input'
+//@TODO: DRY - same definition of email and password in schema - can be reused?
 import schema from './schema'
 
-class SignUp extends React.Component {
+class Login extends React.Component {
   state = {
-    hasSignedUp: false,
+    hasLoggedIn: false,
     globalError: '',
   }
 
   initialValues = {
-    firstName: '',
     email: '',
     password: '',
-    passwordConfirm: '',
   }
 
+  //@TODO: prevent default?
   handleSubmit = async (values, { setSubmitting }) => {
     try {
       setSubmitting(true)
 
-      //@TODO: implement API call
-      alert('Form submitted!')
+      //call api
+      alert('Logging in')
 
       this.setState({
-        hasSignedUp: true,
+        hasLoggedIn: true,
       })
     } catch (error) {
-      this.setState({ globalError: error.message })
+      this.setState({
+        globalError: error.message,
+      })
     } finally {
       setSubmitting(false)
     }
@@ -37,24 +39,18 @@ class SignUp extends React.Component {
   render() {
     return (
       <>
-        <h1>Sign Up</h1>
+        <h1>Login</h1>
         <Formik
-          initialValues={this.initialValues}
+          isInitialValues={this.initialValues}
           onSubmit={this.handleSubmit}
           validationSchema={schema}
         >
           {({ handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
-              <Input name="firstName" label="First name" />
               <Input name="email" label="Email" type="email" />
               <Input name="password" label="Password" type="password" />
-              <Input
-                name="passwordConfirm"
-                label="Confirm Password"
-                type="password"
-              />
               <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Signing up ...' : 'Sign Up'}
+                {isSubmitting ? 'Logging in ...' : 'Log in'}
               </button>
             </form>
           )}
@@ -64,4 +60,4 @@ class SignUp extends React.Component {
   }
 }
 
-export { SignUp }
+export { Login }

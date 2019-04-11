@@ -9,8 +9,9 @@ import store from './store'
 import Layout from './components/Layout/index'
 import ProductListContainer from './pages/Products'
 import { ProductDetail } from './pages/ProductDetail/index'
-import Cart from './pages/Cart'
+import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
+import { Login } from './pages/Login'
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
               <Route path="/" exact component={ProductListContainer} />
               <Route path="/cart" component={Cart} />
               <Route path="/sign-up" component={SignUp} />
+              <Route path="/login" component={Login} />
               <Route path="/:productId" component={ProductDetail} />
             </Switch>
           </Layout>
