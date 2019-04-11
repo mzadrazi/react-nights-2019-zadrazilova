@@ -10,6 +10,7 @@ import Layout from './components/Layout/index'
 import ProductListContainer from './pages/Products'
 import { ProductDetail } from './pages/ProductDetail/index'
 import Cart from './pages/Cart'
+import { SignUp } from './pages/SignUp'
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={ProductListContainer} />
               <Route path="/cart" component={Cart} />
+              <Route path="/sign-up" component={SignUp} />
               <Route path="/:productId" component={ProductDetail} />
             </Switch>
           </Layout>

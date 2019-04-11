@@ -15,6 +15,7 @@ const Layout = props => (
         <NavLink to="/cart">
           Cart <CartQttyInfo />
         </NavLink>
+        <NavLink to="/sign-up">Sign Up</NavLink>
       </Nav>
     </Header>
     <Main>{props.children}</Main>
