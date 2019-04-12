@@ -2,7 +2,7 @@ import React from 'react'
 import { func, shape, string } from 'prop-types'
 
 import { Price } from '../../../../components/Price'
-import { AddToCartButton } from '../../../../components/AddToCartButton'
+import { Button } from '../../../../components/Button'
 import { ProductWrap, Link, Img, ImgWrap, Title } from './styled'
 
 const ProductListItem = (
@@ -15,9 +15,7 @@ const ProductListItem = (
       </ImgWrap>
       <Title>{name}</Title>
       <Price>{price.formatted_amount}</Price>
-      <AddToCartButton onClick={e => onAddToCart(e, id)}>
-        Add to cart
-      </AddToCartButton>
+      <Button onClick={e => onAddToCart(e, id)}>Add to cart</Button>
     </Link>
   </ProductWrap>
 )

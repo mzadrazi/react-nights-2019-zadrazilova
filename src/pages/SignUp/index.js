@@ -1,7 +1,10 @@
 import React from 'react'
 import { Formik } from 'formik'
 
+import { H1 } from '../../components/Headings'
+import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
+import { Form } from '../../components/Form'
 import schema from './schema'
 
 class SignUp extends React.Component {
@@ -37,14 +40,14 @@ class SignUp extends React.Component {
   render() {
     return (
       <>
-        <h1>Sign Up</h1>
+        <H1 textAlign="center">Sign Up</H1>
         <Formik
           initialValues={this.initialValues}
           onSubmit={this.handleSubmit}
           validationSchema={schema}
         >
           {({ handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Input name="firstName" label="First name" />
               <Input name="email" label="Email" type="email" />
               <Input name="password" label="Password" type="password" />
@@ -53,10 +56,10 @@ class SignUp extends React.Component {
                 label="Confirm Password"
                 type="password"
               />
-              <button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} fullWidth>
                 {isSubmitting ? 'Signing up ...' : 'Sign Up'}
-              </button>
-            </form>
+              </Button>
+            </Form>
           )}
         </Formik>
       </>

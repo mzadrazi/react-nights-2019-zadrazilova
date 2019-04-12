@@ -7,7 +7,7 @@ import { addProduct } from '../../store/cart/actions'
 import { getProduct } from '../../api/apiCalls'
 
 import Loader from '../../components/Loader'
-import { AddToCartButton } from '../../components/AddToCartButton'
+import { Button } from '../../components/Button'
 import {
   Description,
   Img,
@@ -49,9 +49,7 @@ class ProductDetailView extends React.Component {
           <Title>{product.name}</Title>
           <Description>{product.description}</Description>
           <Price>{product.price.formatted_amount}</Price>
-          <AddToCartButton onClick={this.handleAddProduct}>
-            Add To Cart
-          </AddToCartButton>
+          <Button onClick={this.handleAddProduct}>Add To Cart</Button>
         </ProductInfoWrap>
       </Wrapper>
     )
