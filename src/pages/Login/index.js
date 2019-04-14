@@ -1,4 +1,5 @@
 import React from 'react'
+import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
 
 import { H1 } from '../../components/Headings'
@@ -28,9 +29,7 @@ class Login extends React.Component {
       //call api
       await login(values)
 
-      this.setState({
-        hasLoggedIn: true,
-      })
+      this.props.history.push('/my-account')
     } catch (error) {
       this.setState({
         globalError: error.message,
@@ -72,6 +71,12 @@ class Login extends React.Component {
       </>
     )
   }
+}
+
+Login.propTypes = {
+  history: shape({
+    push: func.isRequired,
+  }).isRequired,
 }
 
 export { Login }

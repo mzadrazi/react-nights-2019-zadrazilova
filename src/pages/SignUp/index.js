@@ -7,7 +7,7 @@ import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
 import schema from './schema'
-import { createCustomer } from '../../api/createCustomer'
+import { createCustomer } from '../../api/customer/createCustomer'
 
 class SignUp extends React.Component {
   state = {
@@ -27,8 +27,9 @@ class SignUp extends React.Component {
 
       await createCustomer(values)
 
-      this.props.history.push('/')
+      this.props.history.push('/login')
     } catch (error) {
+      console.error(error)
       console.error(error.message)
       this.setState({ globalError: error.message })
     } finally {
