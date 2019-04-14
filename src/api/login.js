@@ -34,6 +34,7 @@ export const getCustomerToken = async ({ email, password }) => {
   }
 }
 
+//TODO: where to place this function
 export const login = async ({ email, password }) => {
   const { token, clientId } = await getCustomerToken({ email, password })
   console.log('token', token)

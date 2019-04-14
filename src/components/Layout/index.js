@@ -6,6 +6,7 @@ import { logout } from '../../store/userSession/actions'
 import { CartQttyInfo } from '../CartQttyInfo'
 import { Header, MainTitle, Main, Link, Nav, NavLink } from './styled'
 
+// TODO: style logout button as a link
 const LayoutView = props => (
   <>
     <Header>
@@ -19,7 +20,7 @@ const LayoutView = props => (
         </NavLink>
         {props.isAuthenticated ? (
           <>
-            <NavLink to="/my-profile">My Profile</NavLink>
+            <NavLink to="/my-account">My Account</NavLink>
             <button onClick={props.logout}>Log out</button>
           </>
         ) : (
