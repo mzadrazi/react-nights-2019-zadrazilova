@@ -6,12 +6,14 @@ import GlobalStyles from './globalStyles'
 
 import store from './store'
 
-import Layout from './components/Layout/index'
+import Layout from './components/Layout'
+import { PrivateRoute } from './components/PrivateRoute'
 import ProductListContainer from './pages/Products'
-import { ProductDetail } from './pages/ProductDetail/index'
+import { ProductDetail } from './pages/ProductDetail'
 import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
 import { Login } from './pages/Login'
+import { MyProfile } from './pages/MyProfile'
 
 class App extends Component {
   render() {
@@ -25,6 +27,7 @@ class App extends Component {
               <Route path="/cart" component={Cart} />
               <Route path="/sign-up" component={SignUp} />
               <Route path="/login" component={Login} />
+              <PrivateRoute path="/my-profile" component={MyProfile} />
               <Route path="/:productId" component={ProductDetail} />
             </Switch>
           </Layout>

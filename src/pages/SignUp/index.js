@@ -1,15 +1,16 @@
 import React from 'react'
+import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
 
 import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
-import { Form } from '../../components/Form'
+import { Form, GlobalFormError } from '../../components/Form'
 import schema from './schema'
+import { createCustomer } from '../../api/createCustomer'
 
 class SignUp extends React.Component {
   state = {
-    hasSignedUp: false,
     globalError: '',
   }
 
@@ -24,13 +25,11 @@ class SignUp extends React.Component {
     try {
       setSubmitting(true)
 
-      //@TODO: implement API call
-      alert('Form submitted!')
+      await createCustomer(values)
 
-      this.setState({
-        hasSignedUp: true,
-      })
+      this.props.history.push('/')
     } catch (error) {
+      console.error(error.message)
       this.setState({ globalError: error.message })
     } finally {
       setSubmitting(false)
@@ -38,9 +37,12 @@ class SignUp extends React.Component {
   }
 
   render() {
+    const { globalError } = this.state
+
     return (
       <>
         <H1 textAlign="center">Sign Up</H1>
+
         <Formik
           initialValues={this.initialValues}
           onSubmit={this.handleSubmit}
@@ -48,13 +50,22 @@ class SignUp extends React.Component {
         >
           {({ handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
+              {Boolean(globalError) && (
+                <GlobalFormError>{globalError}</GlobalFormError>
+              )}
               <Input name="firstName" label="First name" />
-              <Input name="email" label="Email" type="email" />
-              <Input name="password" label="Password" type="password" />
+              <Input name="email" label="Email" type="email" isRequired />
+              <Input
+                name="password"
+                label="Password"
+                type="password"
+                isRequired
+              />
               <Input
                 name="passwordConfirm"
                 label="Confirm Password"
                 type="password"
+                isRequired
               />
               <Button type="submit" disabled={isSubmitting} fullWidth>
                 {isSubmitting ? 'Signing up ...' : 'Sign Up'}
@@ -65,6 +76,12 @@ class SignUp extends React.Component {
       </>
     )
   }
+}
+
+SignUp.propTypes = {
+  history: shape({
+    push: func.isRequired,
+  }).isRequired,
 }
 
 export { SignUp }

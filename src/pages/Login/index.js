@@ -4,9 +4,10 @@ import { Formik } from 'formik'
 import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
-import { Form } from '../../components/Form'
+import { Form, GlobalFormError } from '../../components/Form'
 //@TODO: DRY - same definition of email and password in schema - can be reused?
 import schema from './schema'
+import { login } from '../../api/login'
 
 class Login extends React.Component {
   state = {
@@ -25,7 +26,7 @@ class Login extends React.Component {
       setSubmitting(true)
 
       //call api
-      alert('Logging in')
+      await login(values)
 
       this.setState({
         hasLoggedIn: true,
@@ -40,18 +41,28 @@ class Login extends React.Component {
   }
 
   render() {
+    const { globalError } = this.state
+
     return (
       <>
         <H1 textAlign="center">Login</H1>
         <Formik
-          isInitialValues={this.initialValues}
+          initialValues={this.initialValues}
           onSubmit={this.handleSubmit}
           validationSchema={schema}
         >
           {({ handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
-              <Input name="email" label="Email" type="email" />
-              <Input name="password" label="Password" type="password" />
+              {Boolean(globalError) && (
+                <GlobalFormError>{globalError}</GlobalFormError>
+              )}
+              <Input name="email" label="Email" type="email" isRequired />
+              <Input
+                name="password"
+                label="Password"
+                type="password"
+                isRequired
+              />
               <Button type="submit" disabled={isSubmitting} fullWidth>
                 {isSubmitting ? 'Logging in ...' : 'Log in'}
               </Button>
