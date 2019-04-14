@@ -27,6 +27,7 @@ class SignUp extends React.Component {
 
       await createCustomer(values)
 
+      // TODO: instead of redirect, log user in
       this.props.history.push('/login')
     } catch (error) {
       console.error(error)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { bool, element, object } from 'prop-types'
+import { bool, func, object } from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -28,7 +28,7 @@ const PrivateRouteView = ({
 }
 
 PrivateRouteView.propTypes = {
-  component: element.isRequired,
+  component: func.isRequired,
   isAuthenticated: bool.isRequired,
   location: object.isRequired,
 }

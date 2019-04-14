@@ -16,8 +16,7 @@ export const login = async ({ email, password }) => {
   const { token, clientId } = await getCustomerToken({ email, password })
 
   setToken(token)
-  store.dispatch(loginAction({ clientId }))
+  const customer = await getCustomer(clientId)
 
-  const rawCustomer = getCustomer(clientId)
-  console.log(rawCustomer)
+  store.dispatch(loginAction({ clientId, ...customer }))
 }

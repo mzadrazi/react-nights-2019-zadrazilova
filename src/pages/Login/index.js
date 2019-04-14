@@ -6,9 +6,9 @@ import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
-//@TODO: DRY - same definition of email and password in schema - can be reused?
-import schema from './schema'
 import { login } from '../../api/login'
+
+import schema from './schema'
 
 class Login extends React.Component {
   state = {
@@ -21,12 +21,10 @@ class Login extends React.Component {
     password: '',
   }
 
-  //@TODO: prevent default?
   handleSubmit = async (values, { setSubmitting }) => {
     try {
       setSubmitting(true)
 
-      //call api
       await login(values)
 
       this.props.history.push('/my-account')

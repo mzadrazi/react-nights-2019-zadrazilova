@@ -23,9 +23,11 @@ export const api = async (url, options) => {
   const res = await rawRes.json()
 
   if (rawRes.status >= 400) {
-    //handle errors
+    // TODO: handle errors properly
     throw Error(res.errors[0].detail)
   }
+
+  //TODO: token expiration & refreshing
 
   return res
 }

@@ -8,6 +8,7 @@ export const login = userInfo => ({
   payload: userInfo,
 })
 
+// TODO: remove token from storage during logout - where should it be implemented?
 export const logout = () => ({
   type: LOGOUT,
 })
