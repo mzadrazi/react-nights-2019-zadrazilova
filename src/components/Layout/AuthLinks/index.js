@@ -31,7 +31,7 @@ AuthLinks.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: Boolean(state.userSession.clientId),
+  isAuthenticated: state.userSession.isAuthenticated,
 })
 
 const mapDispatchToProps = {

@@ -34,7 +34,7 @@ PrivateRouteView.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.userSession.clientId !== undefined,
+  isAuthenticated: state.userSession.isAuthenticated,
 })
 
 const PrivateRoute = connect(mapStateToProps)(PrivateRouteView)

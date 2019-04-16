@@ -34,7 +34,7 @@ MyAccountView.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.userSession,
+  userInfo: state.userSession.customer,
 })
 
 const MyAccount = connect(mapStateToProps)(MyAccountView)
