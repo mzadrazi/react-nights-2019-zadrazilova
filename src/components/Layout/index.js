@@ -1,13 +1,11 @@
 import React from 'react'
-import { bool, func, node } from 'prop-types'
-import { connect } from 'react-redux'
+import { node } from 'prop-types'
 
-import { logout } from '../../store/userSession/actions'
 import { CartQttyInfo } from '../CartQttyInfo'
 import { Header, MainTitle, Main, Link, Nav, NavLink } from './styled'
+import AuthLinks from './AuthLinks'
 
-// TODO: style logout button as a link
-const LayoutView = props => (
+const Layout = props => (
   <>
     <Header>
       <MainTitle>
@@ -18,40 +16,15 @@ const LayoutView = props => (
         <NavLink to="/cart">
           Cart <CartQttyInfo />
         </NavLink>
-        {props.isAuthenticated ? (
-          <>
-            <NavLink to="/my-account">My Account</NavLink>
-            <button onClick={props.logout}>Log out</button>
-          </>
-        ) : (
-          <>
-            <NavLink to="/sign-up">Sign Up</NavLink>
-            <NavLink to="/login">Log in</NavLink>
-          </>
-        )}
+        <AuthLinks />
       </Nav>
     </Header>
     <Main>{props.children}</Main>
   </>
 )
 
-LayoutView.propTypes = {
+Layout.propTypes = {
   children: node.isRequired,
-  isAuthenticated: bool.isRequired,
-  logout: func.isRequired,
 }
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.userSession.clientId !== undefined,
-})
-
-const mapDispatchToProps = {
-  logout,
-}
-
-const Layout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LayoutView)
 
 export default Layout
