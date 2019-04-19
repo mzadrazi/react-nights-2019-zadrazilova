@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
 
@@ -8,8 +9,9 @@ import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
 import schema from './schema'
 import { createCustomer } from '../../api/customer/createCustomer'
+import { requestLogin } from '../../store/userSession/actions'
 
-const SignUp = props => {
+const SignUpForm = props => {
   const initialValues = {
     firstName: '',
     email: '',
@@ -23,8 +25,8 @@ const SignUp = props => {
 
       await createCustomer(values)
 
-      // TODO: instead of redirect, log user in
-      props.history.push('/login')
+      await props.dispatchRequestLogin(values)
+      props.history.push('/my-account')
     } catch (error) {
       setStatus({ globalError: error.message })
     } finally {
@@ -70,10 +72,20 @@ const SignUp = props => {
   )
 }
 
-SignUp.propTypes = {
+SignUpForm.propTypes = {
+  dispatchRequestLogin: func.isRequired,
   history: shape({
     push: func.isRequired,
   }).isRequired,
 }
+
+const mapDispatchToProps = {
+  dispatchRequestLogin: requestLogin,
+}
+
+const SignUp = connect(
+  null,
+  mapDispatchToProps
+)(SignUpForm)
 
 export { SignUp }
