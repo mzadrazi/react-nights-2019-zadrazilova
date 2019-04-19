@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
 
@@ -6,11 +7,11 @@ import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
-import { login } from '../../api/login'
+import { requestLogin } from '../../store/userSession/actions'
 
 import schema from './schema'
 
-const Login = props => {
+const LoginForm = props => {
   const initialValues = {
     email: '',
     password: '',
@@ -20,7 +21,7 @@ const Login = props => {
     try {
       setSubmitting(true)
 
-      await login(values)
+      await props.dispatchRequestLogin(values)
 
       props.history.push('/my-account')
     } catch (error) {
@@ -62,10 +63,20 @@ const Login = props => {
   )
 }
 
-Login.propTypes = {
+LoginForm.propTypes = {
+  dispatchRequestLogin: func.isRequired,
   history: shape({
     push: func.isRequired,
   }).isRequired,
 }
+
+const mapDispatchToProps = {
+  dispatchRequestLogin: requestLogin,
+}
+
+const Login = connect(
+  null,
+  mapDispatchToProps
+)(LoginForm)
 
 export { Login }
