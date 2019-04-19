@@ -10,26 +10,21 @@ import { login } from '../../api/login'
 
 import schema from './schema'
 
-class Login extends React.Component {
-  state = {
-    hasLoggedIn: false,
-    globalError: '',
-  }
-
-  initialValues = {
+const Login = props => {
+  const initialValues = {
     email: '',
     password: '',
   }
 
-  handleSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values, { setSubmitting, setStatus }) => {
     try {
       setSubmitting(true)
 
       await login(values)
 
-      this.props.history.push('/my-account')
+      props.history.push('/my-account')
     } catch (error) {
-      this.setState({
+      setStatus({
         globalError: error.message,
       })
     } finally {
@@ -37,38 +32,34 @@ class Login extends React.Component {
     }
   }
 
-  render() {
-    const { globalError } = this.state
-
-    return (
-      <>
-        <H1 textAlign="center">Login</H1>
-        <Formik
-          initialValues={this.initialValues}
-          onSubmit={this.handleSubmit}
-          validationSchema={schema}
-        >
-          {({ handleSubmit, isSubmitting }) => (
-            <Form onSubmit={handleSubmit}>
-              {Boolean(globalError) && (
-                <GlobalFormError>{globalError}</GlobalFormError>
-              )}
-              <Input name="email" label="Email" type="email" isRequired />
-              <Input
-                name="password"
-                label="Password"
-                type="password"
-                isRequired
-              />
-              <Button type="submit" disabled={isSubmitting} fullWidth>
-                {isSubmitting ? 'Logging in ...' : 'Log in'}
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </>
-    )
-  }
+  return (
+    <>
+      <H1 textAlign="center">Login</H1>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={schema}
+      >
+        {({ handleSubmit, isSubmitting, status: formStatus }) => (
+          <Form onSubmit={handleSubmit}>
+            {formStatus && (
+              <GlobalFormError>{formStatus.globalError}</GlobalFormError>
+            )}
+            <Input name="email" label="Email" type="email" isRequired />
+            <Input
+              name="password"
+              label="Password"
+              type="password"
+              isRequired
+            />
+            <Button type="submit" disabled={isSubmitting} fullWidth>
+              {isSubmitting ? 'Logging in ...' : 'Log in'}
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </>
+  )
 }
 
 Login.propTypes = {

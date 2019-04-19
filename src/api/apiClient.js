@@ -1,5 +1,5 @@
 import config from '../config'
-import { getToken, setToken, removeToken } from '../utils/token'
+import { getToken, setToken } from '../utils/token'
 import { getGuestToken } from './getGuestToken'
 
 export const api = async (url, options) => {
@@ -23,11 +23,11 @@ export const api = async (url, options) => {
   const res = await rawRes.json()
 
   // token expiration
-  if (rawRes.status === 401 && token) {
-    //remove token & retry
-    removeToken()
-    return api(url, options)
-  }
+  // if (rawRes.status === 401 && token) {
+  //   //remove token & retry
+  //   removeToken()
+  //   return api(url, options)
+  // }
 
   if (rawRes.status >= 400) {
     // TODO: handle errors properly
