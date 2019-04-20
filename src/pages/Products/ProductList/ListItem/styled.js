@@ -3,7 +3,6 @@ import { Link as RouterLink } from 'react-router-dom'
 
 import theme from '../../../../global/theme'
 
-//TODO use relative units, not pixels
 export const ProductWrap = styled.li`
   list-style-type: none;
 `

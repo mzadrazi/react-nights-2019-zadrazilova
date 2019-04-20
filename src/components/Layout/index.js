@@ -3,6 +3,7 @@ import { node } from 'prop-types'
 
 import { CartQttyInfo } from '../CartQttyInfo'
 import { Header, MainTitle, Main, Link, Nav, NavLink } from './styled'
+import AuthLinks from './AuthLinks'
 
 const Layout = props => (
   <>
@@ -15,6 +16,7 @@ const Layout = props => (
         <NavLink to="/cart">
           Cart <CartQttyInfo />
         </NavLink>
+        <AuthLinks />
       </Nav>
     </Header>
     <Main>{props.children}</Main>
