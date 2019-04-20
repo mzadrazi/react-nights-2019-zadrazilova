@@ -1,0 +1,7 @@
+export const HOMEPAGE = '/'
+export const PRODUCT_LIST = '/products'
+export const PRODUCT_DETAIL = '/products/:productId'
+export const CART = '/cart'
+export const SIGN_UP = '/sign_up'
+export const LOGIN = '/login'
+export const MY_ACCOUNT = '/my-account'

@@ -9,6 +9,8 @@ import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
 import { requestLogin } from '../../store/userSession/actions'
 
+import { MY_ACCOUNT } from '../../routes'
+
 import schema from './schema'
 
 const LoginForm = props => {
@@ -23,7 +25,7 @@ const LoginForm = props => {
 
       await props.dispatchRequestLogin(values)
 
-      props.history.push('/my-account')
+      props.history.push(MY_ACCOUNT)
     } catch (error) {
       setStatus({
         globalError: error.message,

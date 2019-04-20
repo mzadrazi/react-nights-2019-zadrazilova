@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
 
 import GlobalStyles from './globalStyles'
 
 import store from './store'
+import * as routes from './routes'
 
 import Layout from './components/Layout'
 import { PrivateRoute } from './components/PrivateRoute'
@@ -14,6 +20,7 @@ import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
 import { Login } from './pages/Login'
 import { MyAccount } from './pages/MyAccount'
+import { NotFound } from './pages/NotFound'
 
 class App extends Component {
   render() {
@@ -23,12 +30,22 @@ class App extends Component {
           <GlobalStyles />
           <Layout>
             <Switch>
-              <Route path="/" exact component={ProductListContainer} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/sign-up" component={SignUp} />
-              <Route path="/login" component={Login} />
-              <PrivateRoute path="/my-account" component={MyAccount} />
-              <Route path="/:productId" component={ProductDetail} />
+              <Route
+                path={routes.HOMEPAGE}
+                exact
+                render={() => <Redirect to={routes.PRODUCT_LIST} />}
+              />
+              <Route
+                path={routes.PRODUCT_LIST}
+                exact
+                component={ProductListContainer}
+              />
+              <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
+              <Route path={routes.CART} component={Cart} />
+              <Route path={routes.SIGN_UP} component={SignUp} />
+              <Route path={routes.LOGIN} component={Login} />
+              <PrivateRoute path={routes.MY_ACCOUNT} component={MyAccount} />
+              <Route component={NotFound} />
             </Switch>
           </Layout>
         </Router>

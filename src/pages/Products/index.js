@@ -3,6 +3,7 @@ import { array, func } from 'prop-types'
 import { connect } from 'react-redux'
 
 import ProductList from './ProductList/index'
+import { Pagination } from '../../components/Pagination'
 
 import { getProducts } from '../../api/products/getProducts.js'
 import { loadProducts } from '../../store/products/actions'
@@ -31,11 +32,14 @@ class Products extends React.Component {
     const { products } = this.props
 
     return (
-      <ProductList
-        isLoading={isLoading}
-        onAddToCart={this.handleAddToCart}
-        products={products}
-      />
+      <>
+        <Pagination nrPages={3} />
+        <ProductList
+          isLoading={isLoading}
+          onAddToCart={this.handleAddToCart}
+          products={products}
+        />
+      </>
     )
   }
 }
