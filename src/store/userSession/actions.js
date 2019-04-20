@@ -1,6 +1,6 @@
 import { getCustomerToken } from '../../api/getCustomerToken'
 import { getCustomer } from '../../api/customer/getCustomer'
-import { setToken } from '../../utils/token'
+import { setToken, removeToken } from '../../utils/token'
 
 // action types
 export const LOGIN = 'userSession/LOGIN'
@@ -24,4 +24,9 @@ export const requestLogin = ({ email, password }) => async dispatch => {
   const customer = await getCustomer(clientId)
 
   dispatch(login({ clientId, ...customer }))
+}
+
+export const logoutUser = () => dispatch => {
+  removeToken()
+  dispatch(logout())
 }

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { NavLink } from '../styled'
 
 import * as routes from '../../../routes'
-import { logout } from '../../../store/userSession/actions'
+import { logoutUser } from '../../../store/userSession/actions'
 
 // TODO: style logout button as a link
 const AuthLinks = ({ isAuthenticated, dispatchLogout }) => {
@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  dispatchLogout: logout,
+  dispatchLogout: logoutUser,
 }
 
 export default connect(
