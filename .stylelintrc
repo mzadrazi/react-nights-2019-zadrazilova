@@ -1,3 +1,6 @@
 {
-  "extends": ["@strv/stylelint-config-styled-components"]
+  "extends": ["@strv/stylelint-config-styled-components"],
+  "rules": {
+    "declaration-colon-newline-after": 1
+  }
 }

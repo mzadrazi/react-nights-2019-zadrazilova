@@ -62,4 +62,4 @@ const Cart = connect(
   mapDispatchToProps
 )(CartView)
 
-export default Cart
+export { Cart }

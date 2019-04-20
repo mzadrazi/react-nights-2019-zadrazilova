@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import ProductList from './ProductList/index'
 
-import { getProducts } from '../../api/apiCalls.js'
+import { getProducts } from '../../api/products/getProducts.js'
 import { loadProducts } from '../../store/products/actions'
 import { addProduct } from '../../store/cart/actions'
 
