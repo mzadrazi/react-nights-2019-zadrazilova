@@ -7,7 +7,7 @@ import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
-import schema from './schema'
+import { schema } from './schema'
 import { createCustomer } from '../../api/customer/createCustomer'
 import { requestLogin } from '../../store/userSession/actions'
 

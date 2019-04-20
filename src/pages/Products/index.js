@@ -2,14 +2,14 @@ import React from 'react'
 import { array, func } from 'prop-types'
 import { connect } from 'react-redux'
 
-import ProductList from './ProductList/index'
+import { ProductList } from './ProductList/index'
 import { Pagination } from '../../components/Pagination'
 
 import { getProducts } from '../../api/products/getProducts.js'
 import { loadProducts } from '../../store/products/actions'
 import { addProduct } from '../../store/cart/actions'
 
-class Products extends React.Component {
+class ProductsView extends React.Component {
   state = {
     isLoading: true,
   }
@@ -44,13 +44,13 @@ class Products extends React.Component {
   }
 }
 
-Products.propTypes = {
+ProductsView.propTypes = {
   addProduct: func.isRequired,
   loadProducts: func.isRequired,
   products: array,
 }
 
-Products.defaultProps = {
+ProductsView.defaultProps = {
   products: [],
 }
 
@@ -63,9 +63,9 @@ const mapDispatchToProps = {
   loadProducts,
 }
 
-const ProductListContainer = connect(
+const Products = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Products)
+)(ProductsView)
 
-export default ProductListContainer
+export { Products }

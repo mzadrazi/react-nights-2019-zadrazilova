@@ -7,4 +7,4 @@ const schema = object().shape({
   password: string().required('Password is required'),
 })
 
-export default schema
+export { schema }

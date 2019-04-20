@@ -1,4 +1,4 @@
-import config from '../config'
+import { config } from '../config'
 import { getToken, setToken } from '../utils/token'
 import { getGuestToken } from './getGuestToken'
 

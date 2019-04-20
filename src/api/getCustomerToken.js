@@ -1,4 +1,4 @@
-import config from '../config'
+import { config } from '../config'
 import { api } from './apiClient'
 
 export const getCustomerToken = async ({ email, password }) => {

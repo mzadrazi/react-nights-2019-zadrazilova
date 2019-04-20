@@ -7,14 +7,14 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import GlobalStyles from './globalStyles'
+import { GlobalStyles } from './globalStyles'
 
 import store from './store'
 import * as routes from './routes'
 
-import Layout from './components/Layout'
+import { Layout } from './components/Layout'
 import { PrivateRoute } from './components/PrivateRoute'
-import ProductListContainer from './pages/Products'
+import { Products } from './pages/Products'
 import { ProductDetail } from './pages/ProductDetail'
 import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
@@ -33,11 +33,7 @@ const App = () => (
             exact
             render={() => <Redirect to={routes.PRODUCT_LIST} />}
           />
-          <Route
-            path={routes.PRODUCT_LIST}
-            exact
-            component={ProductListContainer}
-          />
+          <Route path={routes.PRODUCT_LIST} exact component={Products} />
           <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
           <Route path={routes.CART} component={Cart} />
           <Route path={routes.SIGN_UP} component={SignUp} />

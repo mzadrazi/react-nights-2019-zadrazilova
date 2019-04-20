@@ -30,4 +30,4 @@ ProductListItem.propTypes = {
   }).isRequired,
 }
 
-export default ProductListItem
+export { ProductListItem }

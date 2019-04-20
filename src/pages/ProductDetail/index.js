@@ -6,7 +6,7 @@ import { addProduct } from '../../store/cart/actions'
 
 import { getProduct } from '../../api/products/getProduct'
 
-import Loader from '../../components/Loader'
+import { Loader } from '../../components/Loader'
 import { Button } from '../../components/Button'
 import {
   Description,

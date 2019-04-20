@@ -1,8 +1,8 @@
 import React from 'react'
 import { array, bool, func } from 'prop-types'
 
-import ProductListItem from './ListItem/index'
-import Loader from '.././../../components/Loader/index'
+import { ProductListItem } from './ListItem/index'
+import { Loader } from '.././../../components/Loader/index'
 import { Wrapper } from './styled'
 
 const ProductList = props => {
@@ -37,4 +37,4 @@ ProductList.defaultProps = {
   products: [],
 }
 
-export default ProductList
+export { ProductList }

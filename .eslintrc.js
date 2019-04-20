@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     'prefer-named-capture-group': 0,
     'react/no-did-mount-set-state': 1,
+    'import/no-default-export': 1,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
   },

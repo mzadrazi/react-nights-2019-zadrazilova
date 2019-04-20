@@ -11,7 +11,7 @@ import { requestLogin } from '../../store/userSession/actions'
 
 import { MY_ACCOUNT } from '../../routes'
 
-import schema from './schema'
+import { schema } from './schema'
 
 const LoginForm = props => {
   const initialValues = {
