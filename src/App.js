@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
 import {
   BrowserRouter as Router,
@@ -22,36 +22,32 @@ import { Login } from './pages/Login'
 import { MyAccount } from './pages/MyAccount'
 import { NotFound } from './pages/NotFound'
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Router>
-          <GlobalStyles />
-          <Layout>
-            <Switch>
-              <Route
-                path={routes.HOMEPAGE}
-                exact
-                render={() => <Redirect to={routes.PRODUCT_LIST} />}
-              />
-              <Route
-                path={routes.PRODUCT_LIST}
-                exact
-                component={ProductListContainer}
-              />
-              <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
-              <Route path={routes.CART} component={Cart} />
-              <Route path={routes.SIGN_UP} component={SignUp} />
-              <Route path={routes.LOGIN} component={Login} />
-              <PrivateRoute path={routes.MY_ACCOUNT} component={MyAccount} />
-              <Route component={NotFound} />
-            </Switch>
-          </Layout>
-        </Router>
-      </Provider>
-    )
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <GlobalStyles />
+      <Layout>
+        <Switch>
+          <Route
+            path={routes.HOMEPAGE}
+            exact
+            render={() => <Redirect to={routes.PRODUCT_LIST} />}
+          />
+          <Route
+            path={routes.PRODUCT_LIST}
+            exact
+            component={ProductListContainer}
+          />
+          <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
+          <Route path={routes.CART} component={Cart} />
+          <Route path={routes.SIGN_UP} component={SignUp} />
+          <Route path={routes.LOGIN} component={Login} />
+          <PrivateRoute path={routes.MY_ACCOUNT} component={MyAccount} />
+          <Route component={NotFound} />
+        </Switch>
+      </Layout>
+    </Router>
+  </Provider>
+)
 
-export default App
+export { App }
