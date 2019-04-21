@@ -18,8 +18,7 @@ const removeProduct = (state, productId) => {
     }
   }
 
-  const newState = { ...state }
-  delete newState[productId]
+  const { productId: id, ...newState } = state // eslint-disable-line no-unused-vars
   return newState
 }
 
