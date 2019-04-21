@@ -47,7 +47,7 @@ CartView.defaultProps = {
 
 const mapStateToProps = state => ({
   items: Object.keys(state.cart).map(productId => ({
-    product: state.products.find(p => p.id === productId),
+    product: productId,
     quantity: state.cart[productId],
   })),
 })
