@@ -10,7 +10,7 @@ import * as routes from '../../routes'
 // TODO: active page
 
 const renderPaginationItem = number => (
-  <ListItem>
+  <ListItem key={number}>
     <Link to={`${routes.PRODUCT_LIST}?page=${number}`}>{number}</Link>
   </ListItem>
 )
@@ -20,7 +20,12 @@ const Pagination = ({ nrPages }) => (
 )
 
 Pagination.propTypes = {
+  //activePage: PropTypes.number,
   nrPages: PropTypes.number.isRequired,
 }
+
+// Pagination.defaultProps = {
+//   activePage: 1,
+// }
 
 export { Pagination }

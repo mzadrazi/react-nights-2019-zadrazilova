@@ -1,70 +1,63 @@
 import React from 'react'
-import { array, func } from 'prop-types'
+import { func, shape, string, number } from 'prop-types'
 import { connect } from 'react-redux'
+import qs from 'qs'
 
 import { ProductList } from './ProductList/index'
 import { Pagination } from '../../components/Pagination'
+import { Loader } from '../../components/Loader'
 
+import { useApi } from '../../api/useApi'
 import { getProducts } from '../../api/products/getProducts.js'
-import { loadProducts } from '../../store/products/actions'
 import { addProduct } from '../../store/cart/actions'
 
-class ProductsView extends React.Component {
-  state = {
-    isLoading: true,
-  }
+const ProductsView = props => {
+  const { page } = qs.parse(props.location.search.substr(1))
 
-  // TODO: handling errors
-  async componentDidMount() {
-    const products = await getProducts()
-    this.props.loadProducts(products)
+  const { data, isLoading } = useApi(
+    () => getProducts({ page: { number: page } }),
+    [page]
+  )
 
-    this.setState({ isLoading: false })
-  }
-
-  handleAddToCart = (e, productId) => {
+  const handleAddToCart = (e, productId) => {
     e.preventDefault()
-    this.props.addProduct(productId)
+    props.addProduct(productId)
   }
 
-  render() {
-    const { isLoading } = this.state
-    const { products } = this.props
-
-    return (
-      <>
-        <Pagination nrPages={3} />
-        <ProductList
-          isLoading={isLoading}
-          onAddToCart={this.handleAddToCart}
-          products={products}
-        />
-      </>
-    )
-  }
+  return (
+    <>
+      {isLoading && <Loader />}
+      {data && (
+        <>
+          <Pagination
+            nrPages={data.meta.page_count}
+            activePage={props.match.params.page}
+          />
+          <ProductList onAddToCart={handleAddToCart} products={data.products} />
+        </>
+      )}
+    </>
+  )
 }
 
 ProductsView.propTypes = {
   addProduct: func.isRequired,
-  loadProducts: func.isRequired,
-  products: array,
+  location: shape({
+    search: string.isRequired,
+  }).isRequired,
+  match: shape({
+    params: shape({
+      page: number.isRequired,
+    }).isRequired,
+  }).isRequired,
 }
-
-ProductsView.defaultProps = {
-  products: [],
-}
-
-const mapStateToProps = state => ({
-  products: state.products,
-})
 
 const mapDispatchToProps = {
   addProduct,
-  loadProducts,
 }
 
 const Products = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ProductsView)
 

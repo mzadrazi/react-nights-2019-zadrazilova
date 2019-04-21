@@ -2,7 +2,7 @@ import { config } from '../config'
 import { getToken, setToken } from '../utils/token'
 import { getGuestToken } from './getGuestToken'
 
-export const api = async (url, options) => {
+const api = async (url, options) => {
   // get token from local storage
   let token = getToken()
 
@@ -36,3 +36,5 @@ export const api = async (url, options) => {
 
   return res
 }
+
+export { api }
