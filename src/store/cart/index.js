@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import { ADD_PRODUCT, REMOVE_PRODUCT } from './actions'
 
 /*
@@ -18,8 +19,7 @@ const removeProduct = (state, productId) => {
     }
   }
 
-  const { productId: id, ...newState } = state // eslint-disable-line no-unused-vars
-  return newState
+  return R.dissoc(`${productId}`, state)
 }
 
 const reducer = (state = {}, action) => {

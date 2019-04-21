@@ -1,32 +1,60 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { arrayOf, func, number, shape, string } from 'prop-types'
 import { connect } from 'react-redux'
 
 import { addProduct, removeProduct } from '../../store/cart/actions'
-// import { formatPrice } from '../../utils'
+import { getProduct } from '../../api/products/getProduct'
+import { formatPrice } from '../../utils'
 
-import { Wrapper } from './styled'
+import { Wrapper, TotalPrice } from './styled'
 import { CartItemsTable } from './CartItemsTable'
+import { Loader } from '../../components/Loader'
 
-const CartView = props => (
-  <Wrapper>
-    <h2>Shopping Cart</h2>
-    <CartItemsTable
-      items={props.items}
-      onAdd={props.addProduct}
-      onRemove={props.removeProduct}
-    />
-    {/* <TotalPrice>
-      Total price:{' '}
-      {formatPrice(
-        props.items.reduce(
-          (sum, curr) => sum + curr.quantity * curr.product.price.amount_float,
-          0
-        )
+const CartView = props => {
+  const [products, setProducts] = useState([])
+  const [isLoading, setLoading] = useState(false)
+
+  const loadCartProducts = () => {
+    setLoading(true)
+    Promise.all(props.productIds.map(id => getProduct(id)))
+      .then(values => setProducts(values))
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }
+
+  useEffect(loadCartProducts, props.productIds)
+
+  const itemsData = props.items.map(item => ({
+    product: products.find(prod => prod.id === item.product),
+    quantity: item.quantity,
+  }))
+
+  return (
+    <Wrapper>
+      <h2>Shopping Cart</h2>
+      {isLoading && <Loader />}
+      {products.length > 0 && (
+        <>
+          <CartItemsTable
+            items={itemsData}
+            onAdd={props.addProduct}
+            onRemove={props.removeProduct}
+          />
+          <TotalPrice>
+            Total price:{' '}
+            {formatPrice(
+              itemsData.reduce(
+                (sum, curr) =>
+                  sum + curr.quantity * curr.product.price.amount_float,
+                0
+              )
+            )}
+          </TotalPrice>
+        </>
       )}
-    </TotalPrice> */}
-  </Wrapper>
-)
+    </Wrapper>
+  )
+}
 
 CartView.propTypes = {
   addProduct: func.isRequired,
@@ -38,6 +66,7 @@ CartView.propTypes = {
       quantity: number.isRequired,
     })
   ),
+  productIds: arrayOf(number).isRequired,
   removeProduct: func.isRequired,
 }
 
@@ -50,6 +79,7 @@ const mapStateToProps = state => ({
     product: productId,
     quantity: state.cart[productId],
   })),
+  productIds: Object.keys(state.cart),
 })
 
 const mapDispatchToProps = {
