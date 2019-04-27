@@ -3,7 +3,7 @@ import { arrayOf, func, number, shape, string } from 'prop-types'
 import { connect } from 'react-redux'
 
 import { addProduct, removeProduct } from '../../store/cart/actions'
-import { getProduct } from '../../api/products/getProduct'
+import { getProductsByIds } from '../../api/products/getProductsByIds'
 import { formatPrice } from '../../utils'
 
 import { Wrapper, TotalPrice } from './styled'
@@ -16,13 +16,13 @@ const CartView = props => {
 
   const loadCartProducts = () => {
     setLoading(true)
-    Promise.all(props.productIds.map(id => getProduct(id)))
-      .then(values => setProducts(values))
+    getProductsByIds(props.productIds)
+      .then(setProducts)
       .catch(console.error)
       .finally(() => setLoading(false))
   }
 
-  useEffect(loadCartProducts, props.productIds)
+  useEffect(loadCartProducts, [props.productIds.join(',')])
 
   const itemsData = props.items.map(item => ({
     product: products.find(prod => prod.id === item.product),
