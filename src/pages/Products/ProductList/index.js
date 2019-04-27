@@ -1,16 +1,11 @@
 import React from 'react'
-import { array, bool, func } from 'prop-types'
+import { array, func } from 'prop-types'
 
-import ProductListItem from './ListItem/index'
-import Loader from '.././../../components/Loader/index'
+import { ProductListItem } from './ListItem/index'
 import { Wrapper } from './styled'
 
 const ProductList = props => {
-  const { isLoading, products, onAddToCart } = props
-
-  if (isLoading) {
-    return <Loader />
-  }
+  const { products, onAddToCart } = props
 
   return (
     <Wrapper>
@@ -27,7 +22,6 @@ const ProductList = props => {
 }
 
 ProductList.propTypes = {
-  isLoading: bool,
   onAddToCart: func.isRequired,
   products: array,
 }
@@ -37,4 +31,4 @@ ProductList.defaultProps = {
   products: [],
 }
 
-export default ProductList
+export { ProductList }

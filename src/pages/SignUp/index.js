@@ -7,9 +7,11 @@ import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
-import schema from './schema'
+import { schema } from './schema'
 import { createCustomer } from '../../api/customer/createCustomer'
 import { requestLogin } from '../../store/userSession/actions'
+
+import { MY_ACCOUNT } from '../../routes'
 
 const SignUpForm = props => {
   const initialValues = {
@@ -26,7 +28,7 @@ const SignUpForm = props => {
       await createCustomer(values)
 
       await props.dispatchRequestLogin(values)
-      props.history.push('/my-account')
+      props.history.push(MY_ACCOUNT)
     } catch (error) {
       setStatus({ globalError: error.message })
     } finally {

@@ -1,7 +1,7 @@
 import 'sanitize.css'
 import { createGlobalStyle } from 'styled-components'
 
-import theme from './global/theme'
+import { theme } from './global/theme'
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -24,4 +24,4 @@ const GlobalStyles = createGlobalStyle`
     max-width: 50rem;
   }
 `
-export default GlobalStyles
+export { GlobalStyles }

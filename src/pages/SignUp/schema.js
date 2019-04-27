@@ -16,4 +16,4 @@ const schema = object().shape({
     .required('Password must be confirmed'),
 })
 
-export default schema
+export { schema }

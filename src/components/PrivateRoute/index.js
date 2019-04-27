@@ -3,6 +3,8 @@ import { bool, func, object } from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { LOGIN } from '../../routes'
+
 const PrivateRouteView = ({
   component: Component,
   isAuthenticated,
@@ -17,7 +19,7 @@ const PrivateRouteView = ({
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
+              pathname: LOGIN,
               state: { from: props.location },
             }}
           />
