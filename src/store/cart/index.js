@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import { ADD_PRODUCT, REMOVE_PRODUCT } from './actions'
 
 /*
@@ -18,9 +19,7 @@ const removeProduct = (state, productId) => {
     }
   }
 
-  const newState = { ...state }
-  delete newState[productId]
-  return newState
+  return R.dissoc(`${productId}`, state)
 }
 
 const reducer = (state = {}, action) => {

@@ -1,40 +1,49 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
 
-import GlobalStyles from './globalStyles'
+import { GlobalStyles } from './globalStyles'
 
 import store from './store'
+import * as routes from './routes'
 
-import Layout from './components/Layout'
+import { Layout } from './components/Layout'
 import { PrivateRoute } from './components/PrivateRoute'
-import ProductListContainer from './pages/Products'
+import { Products } from './pages/Products'
 import { ProductDetail } from './pages/ProductDetail'
 import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
 import { Login } from './pages/Login'
 import { MyAccount } from './pages/MyAccount'
+import { NotFound } from './pages/NotFound'
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Router>
-          <GlobalStyles />
-          <Layout>
-            <Switch>
-              <Route path="/" exact component={ProductListContainer} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/sign-up" component={SignUp} />
-              <Route path="/login" component={Login} />
-              <PrivateRoute path="/my-account" component={MyAccount} />
-              <Route path="/:productId" component={ProductDetail} />
-            </Switch>
-          </Layout>
-        </Router>
-      </Provider>
-    )
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <GlobalStyles />
+      <Layout>
+        <Switch>
+          <Route
+            path={routes.HOMEPAGE}
+            exact
+            render={() => <Redirect to={routes.PRODUCT_LIST} />}
+          />
+          <Route path={routes.PRODUCT_LIST} exact component={Products} />
+          <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
+          <Route path={routes.CART} component={Cart} />
+          <Route path={routes.SIGN_UP} component={SignUp} />
+          <Route path={routes.LOGIN} component={Login} />
+          <PrivateRoute path={routes.MY_ACCOUNT} component={MyAccount} />
+          <Route component={NotFound} />
+        </Switch>
+      </Layout>
+    </Router>
+  </Provider>
+)
 
-export default App
+export { App }

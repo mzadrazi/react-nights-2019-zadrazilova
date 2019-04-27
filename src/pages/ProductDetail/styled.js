@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import theme from '../../global/theme'
+import { theme } from '../../global/theme'
 import { Price as BasePrice } from '../../components/Price/index'
 
 export const Wrapper = styled.div`

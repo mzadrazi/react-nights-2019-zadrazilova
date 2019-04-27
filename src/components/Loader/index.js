@@ -14,4 +14,4 @@ Loader.defaultProps = {
   text: 'Loading ...',
 }
 
-export default Loader
+export { Loader }
