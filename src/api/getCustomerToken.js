@@ -1,5 +1,5 @@
 import { config } from '../config'
-import { api } from './apiClient'
+import { AsyncValidationError } from '../utils/errors'
 
 export const getCustomerToken = async ({ email, password }) => {
   const reqBody = {
@@ -10,14 +10,27 @@ export const getCustomerToken = async ({ email, password }) => {
     scope: `${config.scope}`,
   }
 
-  const res = await api('/oauth/token', {
+  const rawRes = await fetch(`${config.apiUrl}/oauth/token`, {
     method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
     body: JSON.stringify(reqBody),
   })
 
-  return {
-    token: res.access_token,
-    clientId: res.owner_id,
-    //TODO: refresh token
+  switch (rawRes.status) {
+    case 200: {
+      const res = await rawRes.json()
+
+      return {
+        token: res.access_token,
+        clientId: res.owner_id,
+        //TODO: refresh token
+      }
+    }
+    case 401:
+      throw new AsyncValidationError('Wrong email or password.')
+    default:
+      throw new Error('Unexpected login error')
   }
 }

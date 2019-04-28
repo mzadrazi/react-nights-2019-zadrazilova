@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 // Custom hook - reusing fetching of data
 
@@ -13,8 +14,11 @@ const useApi = (fn, resolveCondition = []) => {
   const request = (...args) => {
     setLoading(true)
     fn(...args)
-      .then(returnedData => setData(returnedData))
-      .catch(console.error)
+      .then(setData)
+      .catch(error => {
+        console.error(error)
+        toast.error(error.message)
+      })
       .finally(() => setLoading(false))
   }
 

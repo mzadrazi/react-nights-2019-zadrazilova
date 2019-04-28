@@ -2,6 +2,7 @@ import React from 'react'
 import { func, shape, string, number } from 'prop-types'
 import { connect } from 'react-redux'
 import qs from 'qs'
+import { toast } from 'react-toastify'
 
 import { ProductList } from './ProductList/index'
 import { Pagination } from '../../components/Pagination'
@@ -22,6 +23,7 @@ const ProductsView = props => {
   const handleAddToCart = (e, productId) => {
     e.preventDefault()
     props.addProduct(productId)
+    toast.success('Product have been added to cart.')
   }
 
   return (

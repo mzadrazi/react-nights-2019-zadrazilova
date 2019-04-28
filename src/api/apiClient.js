@@ -1,6 +1,15 @@
 import { config } from '../config'
 import { getToken, setToken } from '../utils/token'
 import { getGuestToken } from './getGuestToken'
+import { AsyncValidationError } from '../utils/errors'
+
+const handleApiErrors = (statusCode, errors) => {
+  if (statusCode >= 400 && statusCode < 500) {
+    throw new AsyncValidationError(errors[0].detail)
+  }
+
+  throw new Error(`API server error`)
+}
 
 const api = async (url, options) => {
   // get token from local storage
@@ -30,8 +39,7 @@ const api = async (url, options) => {
   // }
 
   if (rawRes.status >= 400) {
-    // TODO: handle errors properly
-    throw Error(res.errors[0].detail)
+    handleApiErrors(rawRes.status, res.errors)
   }
 
   return res
