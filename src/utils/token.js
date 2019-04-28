@@ -1,5 +1,11 @@
-export const setToken = token => window.localStorage.setItem('token', token)
+export const GUEST_TOKEN = 'token'
+export const REFRESH_TOKEN = 'refresh_token'
 
-export const getToken = () => window.localStorage.getItem('token')
+export const setToken = (token, type = GUEST_TOKEN) =>
+  window.localStorage.setItem(`${type}`, token)
 
-export const removeToken = () => window.localStorage.removeItem('token')
+export const getToken = (type = GUEST_TOKEN) =>
+  window.localStorage.getItem(`${type}`)
+
+export const removeToken = (type = GUEST_TOKEN) =>
+  window.localStorage.removeItem(`${type}`)
