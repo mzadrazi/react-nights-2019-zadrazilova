@@ -6,6 +6,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import { GlobalStyles } from './globalStyles'
 
@@ -27,6 +28,7 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <GlobalStyles />
+      <ToastContainer />
       <ErrorBoundary>
         <Layout>
           <Switch>
