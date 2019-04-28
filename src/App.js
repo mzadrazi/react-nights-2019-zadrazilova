@@ -21,6 +21,7 @@ import { ProductDetail } from './pages/ProductDetail'
 import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
 import { Login } from './pages/Login'
+import { Logout } from './pages/Logout'
 import { MyAccount } from './pages/MyAccount'
 import { NotFound } from './pages/NotFound'
 
@@ -42,6 +43,7 @@ const App = () => (
             <Route path={routes.CART} component={Cart} />
             <Route path={routes.SIGN_UP} component={SignUp} />
             <Route path={routes.LOGIN} component={Login} />
+            <Route path={routes.LOGOUT} component={Logout} />
             <PrivateRoute path={routes.MY_ACCOUNT} component={MyAccount} />
             <Route component={NotFound} />
           </Switch>
