@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { bool } from 'prop-types'
 import { connect } from 'react-redux'
 
 import { NavLink } from '../styled'
+import { AppState } from '../../../store'
 
 import * as routes from '../../../routes'
 
-const AuthLinks = ({ isAuthenticated }) => {
+type Props = ReturnType<typeof mapStateToProps>
+
+const AuthLinks: FC<Props> = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return (
       <>
@@ -28,7 +31,7 @@ AuthLinks.propTypes = {
   isAuthenticated: bool.isRequired,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppState) => ({
   isAuthenticated: state.userSession.isAuthenticated,
 })
 

@@ -3,12 +3,16 @@ import { getCustomer } from '../../api/customer/getCustomer'
 import { setToken, removeToken } from '../../utils/token'
 import { createCustomer } from '../../api/customer/createCustomer'
 
+import { CustomerType } from '../../global/types'
+
 // action types
-export const LOGIN = 'userSession/LOGIN'
-export const LOGOUT = 'userSession/LOGOUT'
+export const LOGIN = 'userSession/LOGIN' as 'userSession/LOGIN'
+export const LOGOUT = 'userSession/LOGOUT' as 'userSession/LOGOUT'
+
+export type UserSessionAction = ReturnType<typeof login | typeof logout>
 
 // action creators
-export const login = userInfo => ({
+export const login = (userInfo: CustomerType) => ({
   type: LOGIN,
   payload: userInfo,
 })

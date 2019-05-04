@@ -1,11 +1,21 @@
 import { LOGIN, LOGOUT } from './actions'
+import { CustomerType } from '../../global/types'
+import { UserSessionAction } from './actions'
+
+type UserSessionState = {
+  isAuthenticated: boolean
+  customer: CustomerType | null
+}
 
 const INITIAL_STATE = {
   customer: null,
   isAuthenticated: false,
 }
 
-const reducer = (state = INITIAL_STATE, action) => {
+const reducer = (
+  state: UserSessionState = INITIAL_STATE,
+  action: UserSessionAction
+): UserSessionState => {
   switch (action.type) {
     case LOGIN:
       return {

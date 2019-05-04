@@ -2,7 +2,11 @@ import styled from 'styled-components'
 
 import { theme } from '../../global/theme'
 
-const Button = styled.button`
+type ButtonProps = {
+  fullWidth?: boolean
+}
+
+const Button = styled.button<ButtonProps>`
   background-color: ${({ disabled }) =>
     disabled ? theme.color.border : theme.color.oxblood};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};

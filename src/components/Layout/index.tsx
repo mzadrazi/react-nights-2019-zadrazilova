@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { node } from 'prop-types'
 
 import { CartQttyInfo } from '../CartQttyInfo'
@@ -7,7 +7,7 @@ import AuthLinks from './AuthLinks'
 
 import * as routes from '../../routes'
 
-const Layout = props => (
+const Layout: FC = props => (
   <>
     <Header>
       <MainTitle>

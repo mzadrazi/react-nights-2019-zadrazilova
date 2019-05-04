@@ -9,6 +9,9 @@ const reducer = combineReducers({
   userSession,
 })
 
+export type AppState = ReturnType<typeof reducer>
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
