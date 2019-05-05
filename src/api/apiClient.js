@@ -48,13 +48,21 @@ const api = async (url, options) => {
     }
 
     const res = await rawRes.json()
+    // or !rawRes.ok
     if (rawRes.status >= 400) {
+      // most probably I should return this
+      // For sure 500 should be handled here with some nice message for users.
       handleApiErrors(rawRes.status, res.errors)
     }
 
     return res
   } catch (error) {
-    throw error
+    // fetch rejects in case request could not be sent (for ex. connection issue, dns issue, ...)
+    console.log(error)
+    // unfortunately not offline first :/
+    throw new Error(
+      'We are not able to load data. Please check internet connection.'
+    )
   }
 }
 

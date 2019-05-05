@@ -15,10 +15,15 @@ export const createCustomer = async ({ email, password, firstName }) => {
   }
 
   // TODO: fix - error handling (422 - email exists)
-  const res = await api('/api/customers', {
-    method: 'POST',
-    body: JSON.stringify(requestBody),
-  })
+  try {
+    const res = await api('/api/customers', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+    })
 
-  return res
+    return res
+  } catch (e) {
+    console.log(e)
+    throw e
+  }
 }
