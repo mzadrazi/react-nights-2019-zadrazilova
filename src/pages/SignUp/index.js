@@ -2,15 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
+import { toast } from 'react-toastify'
 
 import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
-import { schema } from './schema'
-import { createCustomer } from '../../api/customer/createCustomer'
-import { requestLogin } from '../../store/userSession/actions'
 
+import { AsyncValidationError } from '../../utils/errors'
+import { schema } from './schema'
+import { signUpUser } from '../../store/userSession/actions'
 import { MY_ACCOUNT } from '../../routes'
 
 const SignUpForm = props => {
@@ -25,12 +26,20 @@ const SignUpForm = props => {
     try {
       setSubmitting(true)
 
-      await createCustomer(values)
+      await props.dispatchSignUpUser(values)
 
-      await props.dispatchRequestLogin(values)
+      toast.success('You have been successfully signed up.')
       props.history.push(MY_ACCOUNT)
     } catch (error) {
-      setStatus({ globalError: error.message })
+      if (error instanceof AsyncValidationError) {
+        setStatus({ globalError: error.message })
+      } else {
+        toast.error(
+          'An unexpected error happened during signing up. Please try again.'
+        )
+        //TODO: report error
+        console.error(error.message)
+      }
     } finally {
       setSubmitting(false)
     }
@@ -75,14 +84,14 @@ const SignUpForm = props => {
 }
 
 SignUpForm.propTypes = {
-  dispatchRequestLogin: func.isRequired,
+  dispatchSignUpUser: func.isRequired,
   history: shape({
     push: func.isRequired,
   }).isRequired,
 }
 
 const mapDispatchToProps = {
-  dispatchRequestLogin: requestLogin,
+  dispatchSignUpUser: signUpUser,
 }
 
 const SignUp = connect(

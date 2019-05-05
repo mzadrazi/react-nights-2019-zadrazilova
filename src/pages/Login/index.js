@@ -2,15 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
+import { toast } from 'react-toastify'
 
 import { H1 } from '../../components/Headings'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Form, GlobalFormError } from '../../components/Form'
+
+import { AsyncValidationError } from '../../utils/errors'
 import { requestLogin } from '../../store/userSession/actions'
-
 import { MY_ACCOUNT } from '../../routes'
-
 import { schema } from './schema'
 
 const LoginForm = props => {
@@ -26,10 +27,17 @@ const LoginForm = props => {
       await props.dispatchRequestLogin(values)
 
       props.history.push(MY_ACCOUNT)
+      toast.success('You have been successfully logged in.')
     } catch (error) {
-      setStatus({
-        globalError: error.message,
-      })
+      if (error instanceof AsyncValidationError) {
+        setStatus({
+          globalError: error.message,
+        })
+      } else {
+        toast.error(`An unexpected error happend. Please try again.`)
+        // TODO: error reporting to external service
+        console.error(error)
+      }
     } finally {
       setSubmitting(false)
     }

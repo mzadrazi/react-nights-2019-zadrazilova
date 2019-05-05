@@ -1,6 +1,7 @@
 import { getCustomerToken } from '../../api/getCustomerToken'
 import { getCustomer } from '../../api/customer/getCustomer'
 import { setToken, removeToken } from '../../utils/token'
+import { createCustomer } from '../../api/customer/createCustomer'
 
 // action types
 export const LOGIN = 'userSession/LOGIN'
@@ -12,7 +13,6 @@ export const login = userInfo => ({
   payload: userInfo,
 })
 
-// TODO: remove token from storage during logout - where should it be implemented?
 export const logout = () => ({
   type: LOGOUT,
 })
@@ -29,4 +29,9 @@ export const requestLogin = ({ email, password }) => async dispatch => {
 export const logoutUser = () => dispatch => {
   removeToken()
   dispatch(logout())
+}
+
+export const signUpUser = values => async dispatch => {
+  await createCustomer(values)
+  await dispatch(requestLogin(values))
 }

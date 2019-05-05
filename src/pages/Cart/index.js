@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { arrayOf, func, number, shape, string } from 'prop-types'
 import { connect } from 'react-redux'
 
+import { useApi } from '../../api/useApi'
 import { addProduct, removeProduct } from '../../store/cart/actions'
 import { getProductsByIds } from '../../api/products/getProductsByIds'
 import { formatPrice } from '../../utils'
@@ -11,18 +12,11 @@ import { CartItemsTable } from './CartItemsTable'
 import { Loader } from '../../components/Loader'
 
 const CartView = props => {
-  const [products, setProducts] = useState([])
-  const [isLoading, setLoading] = useState(false)
+  const { data, isLoading } = useApi(() => getProductsByIds(props.productIds), [
+    props.productIds.join(','),
+  ])
 
-  const loadCartProducts = () => {
-    setLoading(true)
-    getProductsByIds(props.productIds)
-      .then(setProducts)
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }
-
-  useEffect(loadCartProducts, [props.productIds.join(',')])
+  const products = data || []
 
   const itemsData = props.items.map(item => ({
     product: products.find(prod => prod.id === item.product),
