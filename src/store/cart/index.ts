@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import { ADD_PRODUCT, REMOVE_PRODUCT } from './actions'
+import { ADD_PRODUCT, REMOVE_PRODUCT, CartAction } from './actions'
 
 /*
  * state shape:
@@ -8,6 +8,7 @@ import { ADD_PRODUCT, REMOVE_PRODUCT } from './actions'
  *  ...
  * }
  */
+type CartState = {}
 
 const removeProduct = (state, productId) => {
   const quantity = state[productId]
@@ -22,7 +23,7 @@ const removeProduct = (state, productId) => {
   return R.dissoc(`${productId}`, state)
 }
 
-const reducer = (state = {}, action) => {
+const reducer = (state = {}, action: CartAction) => {
   switch (action.type) {
     case ADD_PRODUCT:
       return {

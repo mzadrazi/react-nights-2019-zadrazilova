@@ -1,8 +1,13 @@
-import React from 'react'
-import { func, number } from 'prop-types'
+import React, { FC } from 'react'
 import { Wrapper, Quantity, Control, Controls } from './styled'
 
-const QuantityControl = ({ quantity, onAdd, onRemove }) => (
+type Props = {
+  quantity: number
+  onAdd: () => void
+  onRemove: () => void
+}
+
+const QuantityControl: FC<Props> = ({ quantity, onAdd, onRemove }) => (
   <Wrapper>
     <Quantity>{quantity}</Quantity>
     <Controls>
@@ -11,11 +16,5 @@ const QuantityControl = ({ quantity, onAdd, onRemove }) => (
     </Controls>
   </Wrapper>
 )
-
-QuantityControl.propTypes = {
-  onAdd: func.isRequired,
-  onRemove: func.isRequired,
-  quantity: number.isRequired,
-}
 
 export { QuantityControl }

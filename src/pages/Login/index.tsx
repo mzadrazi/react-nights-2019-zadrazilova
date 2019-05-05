@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { connect } from 'react-redux'
 import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
@@ -14,7 +14,11 @@ import { requestLogin } from '../../store/userSession/actions'
 import { MY_ACCOUNT } from '../../routes'
 import { schema } from './schema'
 
-const LoginForm = props => {
+type Props = {
+  history:
+} | ReturnType<typeof mapDispatchToProps>
+
+const LoginForm: FC<Props> = props => {
   const initialValues = {
     email: '',
     password: '',

@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { bool, string } from 'prop-types'
 import { Field } from 'formik'
 
 import { Label, StyledError, StyledInput, Wrapper } from './styled'
 
-const Input = (
-  { label, name, type = 'text', isRequired } // eslint-disable-line no-shadow
+type Props = {
+  isRequired?: boolean
+  label: string
+  name: string
+  type?: string
+}
+
+const Input: FC<Props> = (
+  { label, name, type = 'text', isRequired = false } // eslint-disable-line no-shadow
 ) => (
   <Field
     name={name}
@@ -26,16 +33,5 @@ const Input = (
     }}
   />
 )
-
-Input.propTypes = {
-  isRequired: bool,
-  label: string.isRequired,
-  name: string.isRequired,
-  type: string.isRequired,
-}
-
-Input.defaultProps = {
-  isRequired: false,
-}
 
 export { Input }

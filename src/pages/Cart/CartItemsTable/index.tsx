@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { arrayOf, func, shape, string, number } from 'prop-types'
 
 import { formatPrice } from '../../../utils'
@@ -6,8 +6,13 @@ import { formatPrice } from '../../../utils'
 import { QuantityControl } from './QuantityControl'
 import { Table, Td, Th } from './styled'
 
+type Props = {
+  onAdd: () => void
+  onRemove: () => void
+}
+
 //TODO: format total price
-const CartItemsTable = ({ items, onAdd, onRemove }) => {
+const CartItemsTable: FC<Props> = ({ items, onAdd, onRemove }) => {
   if (items.length === 0) {
     return <p>Your shopping cart is empty</p>
   }
