@@ -1,16 +1,12 @@
-import { FC } from 'react'
-import { number } from 'prop-types'
+import React, { FC } from 'react'
 import { connect, MapStateToProps } from 'react-redux'
 import { AppState } from '../../store'
 
-const CartQttyInfoView: FC<Props> = ({ totalQtty }) =>
-  `(${totalQtty > 0 ? `${totalQtty} items` : 'empty'})`
-
 type Props = ReturnType<typeof mapStateToProps>
 
-// CartQttyInfoView.propTypes = {
-//   totalQtty: number.isRequired,
-// }
+const CartQttyInfoView: FC<Props> = ({ totalQtty }) => (
+  <>`(${totalQtty > 0 ? `${totalQtty} items` : 'empty'})`</>
+)
 
 const mapStateToProps = (state: AppState) => ({
   totalQtty: Object.keys(state.cart).reduce(

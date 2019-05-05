@@ -14,9 +14,7 @@ import { requestLogin } from '../../store/userSession/actions'
 import { MY_ACCOUNT } from '../../routes'
 import { schema } from './schema'
 
-type Props = {
-  history:
-} | ReturnType<typeof mapDispatchToProps>
+type Props = typeof mapDispatchToProps
 
 const LoginForm: FC<Props> = props => {
   const initialValues = {

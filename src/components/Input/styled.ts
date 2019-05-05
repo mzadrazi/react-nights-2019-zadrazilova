@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { theme } from '../../global/theme'
 
 type StyledInputProps = {
-  hasError: boolean
+  hasError?: boolean
 }
 
 export const Wrapper = styled.div`

@@ -4,11 +4,7 @@ import { array, func } from 'prop-types'
 import { ProductListItem } from './ListItem/index'
 import { Wrapper } from './styled'
 
-type Props = {
-  onAddToCart: () => void
-}
-
-const ProductList: FC<Props> = ({ products, onAddToCart }) => (
+const ProductList = ({ products, onAddToCart }) => (
   <Wrapper>
     {products.map(({ id, ...product }) => (
       <ProductListItem

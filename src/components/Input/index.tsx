@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-import { bool, string } from 'prop-types'
-import { Field } from 'formik'
+import { Field, FieldProps } from 'formik'
 
 import { Label, StyledError, StyledInput, Wrapper } from './styled'
 
@@ -16,7 +15,7 @@ const Input: FC<Props> = (
 ) => (
   <Field
     name={name}
-    render={({ field, form }) => {
+    render={({ field, form }: FieldProps) => {
       const { errors, touched } = form
       const hasError = touched[name] && Boolean(errors[name])
 

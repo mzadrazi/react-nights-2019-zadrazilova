@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { connect } from 'react-redux'
-import { shape, func } from 'prop-types'
 import { Formik } from 'formik'
 import { toast } from 'react-toastify'
 
@@ -14,7 +13,9 @@ import { schema } from './schema'
 import { signUpUser } from '../../store/userSession/actions'
 import { MY_ACCOUNT } from '../../routes'
 
-const SignUpForm = props => {
+type Props = typeof mapDispatchToProps
+
+const SignUpForm: FC<Props> = props => {
   const initialValues = {
     firstName: '',
     email: '',
@@ -83,12 +84,12 @@ const SignUpForm = props => {
   )
 }
 
-SignUpForm.propTypes = {
-  dispatchSignUpUser: func.isRequired,
-  history: shape({
-    push: func.isRequired,
-  }).isRequired,
-}
+// SignUpForm.propTypes = {
+//   dispatchSignUpUser: func.isRequired,
+//   history: shape({
+//     push: func.isRequired,
+//   }).isRequired,
+// }
 
 const mapDispatchToProps = {
   dispatchSignUpUser: signUpUser,

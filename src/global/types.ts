@@ -4,3 +4,13 @@ export type CustomerType = {
   firstName: string
   status: string
 }
+
+export type ProductType = {
+  id: string
+  name: string
+  description: string
+  imgUrl: string
+  price: {
+    formatted_amount: string
+  }
+}

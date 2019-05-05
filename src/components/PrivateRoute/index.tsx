@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { bool, func, object } from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -6,7 +6,10 @@ import { connect } from 'react-redux'
 import { LOGIN } from '../../routes'
 import { AppState } from '../../store'
 
-type Props = {} | ReturnType<typeof mapStateToProps>
+type Props = {
+  component: ReactNode
+  location: object
+} & ReturnType<typeof mapStateToProps>
 
 const PrivateRouteView: FC<Props> = ({
   component: Component,

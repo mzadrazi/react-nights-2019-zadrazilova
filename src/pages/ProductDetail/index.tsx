@@ -1,6 +1,6 @@
-import React from 'react'
-import { func, shape, string } from 'prop-types'
+import React, { FC } from 'react'
 import { connect } from 'react-redux'
+import { RouteComponentProps } from 'react-router-dom'
 
 import { addProduct } from '../../store/cart/actions'
 
@@ -21,7 +21,10 @@ import {
 
 //TODO: add breadcrumb
 
-const ProductDetailView = ({ match, requestAddProduct }) => {
+type Props = typeof mapDispatchToProps &
+  RouteComponentProps<{ productId: string }>
+
+const ProductDetailView: FC<Props> = ({ match, requestAddProduct }) => {
   const { productId } = match.params
 
   const handleAddProduct = () => requestAddProduct(productId)
@@ -48,15 +51,6 @@ const ProductDetailView = ({ match, requestAddProduct }) => {
       )}
     </>
   )
-}
-
-ProductDetailView.propTypes = {
-  match: shape({
-    params: shape({
-      productId: string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  requestAddProduct: func.isRequired,
 }
 
 const mapDispatchToProps = {
