@@ -12,5 +12,7 @@ export type ProductType = {
   imgUrl: string
   price: {
     formatted_amount: string
+    amount_float: number
+    currency_code: string
   }
 }

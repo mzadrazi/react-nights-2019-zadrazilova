@@ -1,18 +1,22 @@
 import React, { FC } from 'react'
-import { arrayOf, func, shape, string, number } from 'prop-types'
 
 import { formatPrice } from '../../../utils'
 
 import { QuantityControl } from './QuantityControl'
 import { Table, Td, Th } from './styled'
+import { ProductType } from '../../../global/types'
 
 type Props = {
-  onAdd: () => void
-  onRemove: () => void
+  items: ReadonlyArray<{
+    quantity: number
+    product: ProductType
+  }>
+  onAdd: (productId: string) => void
+  onRemove: (productId: string) => void
 }
 
 //TODO: format total price
-const CartItemsTable: FC<Props> = ({ items, onAdd, onRemove }) => {
+const CartItemsTable: FC<Props> = ({ items = [], onAdd, onRemove }) => {
   if (items.length === 0) {
     return <p>Your shopping cart is empty</p>
   }
@@ -57,24 +61,6 @@ const CartItemsTable: FC<Props> = ({ items, onAdd, onRemove }) => {
       </tbody>
     </Table>
   )
-}
-
-CartItemsTable.propTypes = {
-  items: arrayOf(
-    shape({
-      quantity: number.isRequired,
-      product: shape({
-        id: string.isRequired,
-        name: string.isRequired,
-      }).isRequired,
-    })
-  ),
-  onAdd: func.isRequired,
-  onRemove: func.isRequired,
-}
-
-CartItemsTable.defaultProps = {
-  items: [],
 }
 
 export { CartItemsTable }

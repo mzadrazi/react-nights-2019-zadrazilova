@@ -7,7 +7,13 @@ import { AsyncValidationError } from '../utils/errors'
  * @param {string} password Customer's password
  * @returns {{clientId: string, refreshToken: string, token: string}} ID of customer, refreshToken and customer access token
  */
-export const getCustomerToken = async ({ email, password }) => {
+export const getCustomerToken = async ({
+  email,
+  password,
+}: {
+  email: string,
+  password: string,
+}) => {
   const reqBody = {
     grant_type: 'password',
     username: `${email}`,

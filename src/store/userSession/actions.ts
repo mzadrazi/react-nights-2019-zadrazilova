@@ -1,3 +1,5 @@
+import { ThunkDispatch } from 'redux-thunk'
+
 import { getCustomerToken } from '../../api/getCustomerToken'
 import { getCustomer } from '../../api/customer/getCustomer'
 import { setToken, removeToken } from '../../utils/token'
@@ -11,6 +13,8 @@ export const LOGOUT = 'userSession/LOGOUT' as 'userSession/LOGOUT'
 
 export type UserSessionAction = ReturnType<typeof login | typeof logout>
 
+type Dispatch = ThunkDispatch<{}, {}, UserSessionAction>
+
 // action creators
 export const login = (userInfo: CustomerType) => ({
   type: LOGIN,
@@ -21,7 +25,13 @@ export const logout = () => ({
   type: LOGOUT,
 })
 
-export const requestLogin = ({ email, password }) => async dispatch => {
+export const requestLogin = ({
+  email,
+  password,
+}: {
+  email: string
+  password: string
+}) => async (dispatch: Dispatch) => {
   const { token, clientId } = await getCustomerToken({ email, password })
 
   setToken(token)
@@ -30,12 +40,12 @@ export const requestLogin = ({ email, password }) => async dispatch => {
   dispatch(login({ clientId, ...customer }))
 }
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch: Dispatch) => {
   removeToken()
   dispatch(logout())
 }
 
-export const signUpUser = values => async dispatch => {
+export const signUpUser = values => async (dispatch: Dispatch) => {
   await createCustomer(values)
   await dispatch(requestLogin(values))
 }

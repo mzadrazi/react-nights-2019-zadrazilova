@@ -13,6 +13,8 @@ type Included = ReadonlyArray<{
   type: string
   attributes: {
     formatted_amount: string
+    currency_code: string
+    amount_float: number
   }
 }>
 

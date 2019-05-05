@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { connect } from 'react-redux'
-import { shape, func } from 'prop-types'
-import { Formik } from 'formik'
+import { Formik, FormikActions } from 'formik'
 import { toast } from 'react-toastify'
 
 import { H1 } from '../../components/Headings'
@@ -14,7 +13,16 @@ import { requestLogin } from '../../store/userSession/actions'
 import { MY_ACCOUNT } from '../../routes'
 import { schema } from './schema'
 
-type Props = typeof mapDispatchToProps
+type Props = typeof mapDispatchToProps & {
+  history: {
+    push: (path: string) => void
+  }
+}
+
+type LoginFormValues = {
+  email: string
+  password: string
+}
 
 const LoginForm: FC<Props> = props => {
   const initialValues = {
@@ -22,7 +30,10 @@ const LoginForm: FC<Props> = props => {
     password: '',
   }
 
-  const onSubmit = async (values, { setSubmitting, setStatus }) => {
+  const onSubmit = async (
+    values: LoginFormValues,
+    { setSubmitting, setStatus }: FormikActions<LoginFormValues>
+  ) => {
     try {
       setSubmitting(true)
 
@@ -73,13 +84,6 @@ const LoginForm: FC<Props> = props => {
       </Formik>
     </>
   )
-}
-
-LoginForm.propTypes = {
-  dispatchRequestLogin: func.isRequired,
-  history: shape({
-    push: func.isRequired,
-  }).isRequired,
 }
 
 const mapDispatchToProps = {

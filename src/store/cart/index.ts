@@ -8,9 +8,11 @@ import { ADD_PRODUCT, REMOVE_PRODUCT, CartAction } from './actions'
  *  ...
  * }
  */
-type CartState = {}
+type CartState = {
+  [productId: string]: number
+}
 
-const removeProduct = (state, productId) => {
+const removeProduct = (state: CartState, productId: string): CartState => {
   const quantity = state[productId]
 
   if (quantity > 1) {
@@ -23,7 +25,7 @@ const removeProduct = (state, productId) => {
   return R.dissoc(`${productId}`, state)
 }
 
-const reducer = (state = {}, action: CartAction) => {
+const reducer = (state: CartState = {}, action: CartAction): CartState => {
   switch (action.type) {
     case ADD_PRODUCT:
       return {

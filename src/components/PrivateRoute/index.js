@@ -1,17 +1,11 @@
-import React, { FC, ReactNode } from 'react'
+import React from 'react'
 import { bool, func, object } from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { LOGIN } from '../../routes'
-import { AppState } from '../../store'
 
-type Props = {
-  component: ReactNode
-  location: object
-} & ReturnType<typeof mapStateToProps>
-
-const PrivateRouteView: FC<Props> = ({
+const PrivateRouteView = ({
   component: Component,
   isAuthenticated,
   ...rest
@@ -41,7 +35,7 @@ PrivateRouteView.propTypes = {
   location: object.isRequired,
 }
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = state => ({
   isAuthenticated: state.userSession.isAuthenticated,
 })
 
