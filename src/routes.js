@@ -6,6 +6,7 @@ export const PRODUCT_DETAIL = '/products/:productId'
 export const CART = '/cart'
 export const SIGN_UP = '/sign_up'
 export const LOGIN = '/login'
+export const LOGOUT = '/logout'
 export const MY_ACCOUNT = '/my-account'
 
 export const getProductDetailRoute = productId =>

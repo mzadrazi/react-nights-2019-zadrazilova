@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     '@strv/eslint-config-react/v16',
     '@strv/eslint-config-react/optional',
+    '@strv/eslint-config-typescript',
     'prettier',
     'prettier/react',
   ],
@@ -14,7 +15,7 @@ module.exports = {
     jest: true,
     node: true,
   },
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
